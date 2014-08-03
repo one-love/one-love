@@ -1,0 +1,8 @@
+*.pyc
+vagrant_ansible_inventory_*
+.vagrant/
+.ropeproject/
+*.log
+*.swp
+provision/roles/proxy_php/files/www/www/composer.*
+provision/roles/proxy_php/files/www/www/vendor

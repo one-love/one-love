@@ -1,0 +1,6 @@
+[submodule "web"]
+	path = web
+	url = git@github.com:mekanix/one-love-web.git
+[submodule "provision"]
+	path = provision
+	url = git@github.com:mekanix/one-love-provision.git
