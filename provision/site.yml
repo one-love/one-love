@@ -3,4 +3,4 @@
     - include: roles/common/pre_tasks/main.yml
   roles:
     - common
-    - python
+    - workers

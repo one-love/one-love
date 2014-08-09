@@ -1,3 +1,15 @@
+common_packages:
+  - name: git-core
+  - name: rabbitmq-server
+  - name: tmux
+  - name: vim-nox
+  - name: wajig
+  - name: wget
+
+common_services:
+  - name: openntpd
+    notify: openntpd
+
 common_pretask_packages:
   - name: python-apt
   - name: python-pycurl

@@ -1,0 +1,12 @@
+[program:{{ item.name }}]
+command=/vagrant/workers/start-worker.sh /vagrant/workers/worker.py
+autostart=true
+autorestart=true
+stopsignal=QUIT
+stdout_logfile=/var/log/{{ item.name }}.log
+stderr_logfile=/var/log/vagrant/{{ item.name }}.error.log
+user=vagrant
+directory=/home/vagrant
+
+[group:vagrant]
+programs={{ item.name }}

@@ -1,0 +1,11 @@
+worker_packages:
+  - name: python-dev
+  - name: python3-pip
+  - name: python-virtualenv
+
+worker_services:
+  - name: supervisor
+    notify: supervisor
+
+supervisor_config:
+  - name: worker

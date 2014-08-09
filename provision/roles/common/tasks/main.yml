@@ -15,9 +15,11 @@
     pkg: "{{ item.name }}"
     state: latest
 
-- name: restart openntpd
+- name: install services
   sudo: yes
-  service:
-    name: openntpd
-    enabled: yes
-    state: restarted
+  with_items: common_services
+  apt:
+    pkg: "{{ item.name }}"
+    state: latest
+  notify:
+    - "restart {{ item.notify }}"
