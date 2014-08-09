@@ -1,0 +1,11 @@
+# -*- mode: ansible -*-
+# vi: set ft=ansible :
+
+common_packages:
+  - name: git-core
+  - name: openntpd
+  - name: rabbitmq-server
+  - name: tmux
+  - name: vim-nox
+  - name: wajig
+  - name: wget

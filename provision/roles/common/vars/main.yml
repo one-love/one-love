@@ -1,0 +1,6 @@
+common_pretask_packages:
+  - name: python-apt
+  - name: python-pycurl
+
+pip_packages:
+  - name: pika

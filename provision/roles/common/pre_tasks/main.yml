@@ -1,0 +1,12 @@
+- name: update apt
+  sudo: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install packages
+  sudo: yes
+  with_items: common_pretask_packages
+  apt:
+    pkg: "{{ item.name }}"
+    state: latest

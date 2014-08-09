@@ -9,7 +9,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.33.33"
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "provision/site.yml"
-    ansible.host_key_checking = false
     ansible.groups = {
       "vm" => ["default"],
     }

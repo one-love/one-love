@@ -1,0 +1,21 @@
+- name: install python packages
+  sudo: yes
+  with_items: python_packages
+  apt:
+    pkg: "{{ item.name }}"
+    state: latest
+
+- name: create python environment
+  command: virtualenv virtualenv creates=virtualenv
+
+- name: copy pip requirements file
+  copy:
+    src: requirements.txt
+    dest: virtualenv/requirements.txt
+    mode: 0644
+
+- name: install pip packages
+  pip:
+    requirements: ~/virtualenv/requirements.txt
+    extra_args: --upgrade
+    virtualenv: ~/virtualenv
