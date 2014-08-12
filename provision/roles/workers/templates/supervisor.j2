@@ -1,0 +1,7 @@
+[program:workers]
+command=vex workers /vagrant/workers/worker.py
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/one-love/workers.log
+stderr_logfile=/var/log/one-love/workers.err
+user={{ webapp_user }}

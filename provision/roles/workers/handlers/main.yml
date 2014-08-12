@@ -1,0 +1,21 @@
+- name: stop supervisor
+  sudo: yes
+  service:
+    name: supervisor
+    enabled: yes
+    state: stopped
+
+- name: start supervisor
+  sudo: yes
+  service:
+    name: supervisor
+    enabled: yes
+    state: started
+
+- name: reload supervisor config
+  sudo: yes
+  command: supervisorctl reread
+
+- name: update supervisor process
+  sudo: yes
+  command: supervisorctl update

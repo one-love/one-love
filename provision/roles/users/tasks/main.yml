@@ -1,0 +1,5 @@
+- name: ensure webapp_user exists
+  sudo: yes
+  user:
+    name: "{{ webapp_user }}"
+    groups: supervisor,sudo
