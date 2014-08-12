@@ -5,38 +5,10 @@
     pkg: "{{ item.name }}"
     state: latest
 
-- name: install services
-  sudo: yes
-  with_items: worker_services
-  apt:
-    pkg: "{{ item.name }}"
-    state: latest
-  notify:
-    - "restart {{ item.notify }}"
-
-- name: create python environment
-  command: virtualenv virtualenv creates=virtualenv
-
-- name: copy pip requirements file
-  copy:
-    src: requirements.txt
-    dest: virtualenv/requirements.txt
-    mode: 0644
-
 - name: install pip packages
-  pip:
-    requirements: ~/virtualenv/requirements.txt
-    extra_args: --upgrade
-    virtualenv: ~/virtualenv
-
-- name: configure supervisor
   sudo: yes
-  with_items: supervisor_config
-  template:
-    src: "{{ item.name }}.j2"
-    dest: "/etc/supervisor/conf.d/{{ item.name }}.conf"
-    owner: root
-    group: root
-  notify:
-    - reload supervisor config
-    - update supervisor process
+  sudo_user: "{{ webapp_user }}"
+  pip:
+    requirements: /vagrant/workers/requirements.txt
+    virtualenv: ~/.virtualenvs/workers
+    state: latest
