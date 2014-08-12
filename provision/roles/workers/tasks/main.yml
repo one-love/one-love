@@ -5,6 +5,14 @@
     pkg: "{{ item.name }}"
     state: latest
 
+- name: ensure /var/repos is directory
+  sudo: yes
+  file:
+    path: /var/repos
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: directory
+
 - name: install pip packages
   sudo: yes
   sudo_user: "{{ webapp_user }}"
