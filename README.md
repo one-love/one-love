@@ -18,7 +18,5 @@ To test:
 
     vagrant up --provision
     vagrant ssh
-    cd /vagrant/workers
-    source ~/virtualenv/bin/activate.fish
-    ./sender.py
-    ./worker.py
+    vex workers /vagrant/workers/sender.py
+    vex workers /vagrant/workers/worker.py
