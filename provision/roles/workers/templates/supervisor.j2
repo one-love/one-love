@@ -5,3 +5,5 @@ autorestart=true
 stdout_logfile=/var/log/one-love/workers.log
 stderr_logfile=/var/log/one-love/workers.err
 user={{ webapp_user }}
+numprocs={{ number_of_workers }}
+process_name=%(program_name)s_%(process_num)s
