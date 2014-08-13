@@ -1,3 +1,9 @@
+- name: ensure supervisor group exists
+  sudo: yes
+  group:
+    name: supervisor
+    state: present
+
 - name: ensure webapp_user exists
   sudo: yes
   user:

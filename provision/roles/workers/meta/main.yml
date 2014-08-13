@@ -1,5 +1,3 @@
 dependencies:
   - { role: common }
   - { role: users }
-  - { role: postgresql }
-  - { role: nginx }

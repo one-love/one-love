@@ -29,12 +29,6 @@
     group: "{{ webapp_user }}"
     state: directory
 
-- name: ensure supervisor group exists
-  sudo: yes
-  group:
-    name: supervisor
-    state: present
-
 - name: configure supervisor
   sudo: yes
   template:
