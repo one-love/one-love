@@ -16,3 +16,29 @@
   notify:
     - reload supervisor config
     - update supervisor process
+
+- name: configure nginx vhost
+  sudo: yes
+  template:
+    src: django.j2
+    dest: /etc/nginx/sites-available/onelove.conf
+    owner: root
+    group: root
+  notify:
+    - reload nginx
+
+- name: enable nginx vhost
+  sudo: yes
+  file:
+    src: /etc/nginx/sites-available/onelove.conf
+    dest: /etc/nginx/sites-enabled/onelove.conf
+    owner: root
+    group: root
+    state: link
+  notify:
+    - reload nginx
+
+- name: collect static files
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  command: vex web ./manage.py collectstatic --noinput chdir=/vagrant/web
