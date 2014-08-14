@@ -1,0 +1,7 @@
+[program:workers]
+command=vex web gunicorn -b unix:///tmp/onelove.sock --pythonpath /vagrant/web -w {{ number_of_web_workers }} onelove.wsgi:application
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/one-love/web.log
+stderr_logfile=/var/log/one-love/web.err
+user={{ webapp_user }}

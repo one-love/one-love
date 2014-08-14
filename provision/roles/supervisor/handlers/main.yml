@@ -19,3 +19,4 @@
 - name: update supervisor process
   sudo: yes
   command: supervisorctl update
+

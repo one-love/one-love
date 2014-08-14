@@ -5,3 +5,14 @@
     requirements: /vagrant/web/requirements.txt
     virtualenv: ~/.virtualenvs/web
     state: latest
+
+- name: configure supervisor for workers
+  sudo: yes
+  template:
+    src: supervisor.j2
+    dest: /etc/supervisor/conf.d/web.conf
+    owner: root
+    group: root
+  notify:
+    - reload supervisor config
+    - update supervisor process

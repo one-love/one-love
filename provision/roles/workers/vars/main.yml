@@ -1,4 +1,3 @@
 worker_packages:
   - name: python-dev
   - name: python-virtualenv
-  - name: supervisor

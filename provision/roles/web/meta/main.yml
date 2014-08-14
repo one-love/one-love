@@ -3,3 +3,4 @@ dependencies:
   - { role: users }
   - { role: postgresql }
   - { role: nginx }
+  - { role: supervisor }

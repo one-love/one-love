@@ -1,0 +1,24 @@
+- name: install supervisor
+  sudo: yes
+  apt:
+    pkg: supervisor
+    state: latest
+
+- name: ensure /var/log/one-love exists
+  sudo: yes
+  file:
+    path: /var/log/one-love
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: directory
+
+- name: configure supervisor
+  sudo: yes
+  template:
+    src: supervisord.conf.j2
+    dest: /etc/supervisor/supervisord.conf
+    owner: root
+    group: root
+  notify:
+    - stop supervisor
+    - start supervisor
