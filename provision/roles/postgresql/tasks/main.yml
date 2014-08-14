@@ -1,5 +1,5 @@
 - name: install postgresql
   sudo: yes
   apt:
-    pkg: postgresql
+    pkg: postgresql-9.3
     state: latest
