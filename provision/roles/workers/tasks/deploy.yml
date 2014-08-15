@@ -1,0 +1,29 @@
+- name: deploy workers if inside vagrant
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  when: '"vm" in group_names'
+  file:
+    src: /vagrant/workers
+    dest: "~{{ webapp_user }}/workers"
+    state: link
+  notify:
+    - stop web supervisor
+    - start web supervisor
+  tags:
+    - deploy
+
+- name: deploy workers if outside vagrant
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  when: '"vm" not in group_names'
+  git:
+    repo: https://github.com/mekanix/one-love-workers
+    dest: "~{{ webapp_user }}/workers"
+    accept_hostkey: yes
+    depth: 1
+  notify:
+    - stop web supervisor
+    - start web supervisor
+  tags:
+    - deploy
+

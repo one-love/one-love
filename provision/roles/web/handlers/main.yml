@@ -1,0 +1,9 @@
+- name: stop web supervisor
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  command: supervisorctl stop web
+
+- name: start web supervisor
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  command: supervisorctl start web

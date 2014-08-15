@@ -1,0 +1,37 @@
+- name: deploy onelove if inside vagrant
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  when: '"vm" in group_names'
+  file:
+    src: /vagrant/web
+    dest: /var/www/onelove
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: link
+  notify:
+    - stop web supervisor
+    - start web supervisor
+  tags:
+    - deploy
+
+- name: deploy onelove if outside vagrant
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  when: '"vm" not in group_names'
+  git:
+    repo: https://github.com/mekanix/one-love-web
+    dest: /var/www/onelove
+    accept_hostkey: yes
+    depth: 1
+  notify:
+    - stop web supervisor
+    - start web supervisor
+  tags:
+    - deploy
+
+- name: collect static files
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  command: vex web ./manage.py collectstatic --noinput chdir=/var/www/onelove
+  tags:
+    - deploy
