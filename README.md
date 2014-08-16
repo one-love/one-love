@@ -14,9 +14,8 @@ containing ansible playbook. That repo is by default one of One Love ones, but
 you're free to use your own.
 - Use [workers](https://github.com/mekanix/one-love-workers) to clone that repo and run the playbook.
 
-To test:
+To test uppon cloning:
 
     vagrant up --provision
     vagrant ssh
     vex workers /vagrant/workers/sender.py
-    vex workers /vagrant/workers/worker.py
