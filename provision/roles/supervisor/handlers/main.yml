@@ -5,6 +5,12 @@
     enabled: yes
     state: stopped
 
+- name: remove socket file
+  sudo: yes
+  file:
+    path: /tmp/onelove.sock
+    state: absent
+
 - name: start supervisor
   sudo: yes
   service:

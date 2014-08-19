@@ -8,6 +8,7 @@
     state: link
   notify:
     - stop web supervisor
+    - remove socket file
     - start web supervisor
   tags:
     - deploy
@@ -23,6 +24,7 @@
     depth: 1
   notify:
     - stop web supervisor
+    - remove socket file
     - start web supervisor
   tags:
     - deploy
