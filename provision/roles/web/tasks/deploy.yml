@@ -36,12 +36,15 @@
   sudo_user: "{{ webapp_user }}"
   pip:
     requirements: /var/www/onelove/requirements.txt
-    virtualenv: ~/.virtualenvs/web
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
     state: latest
 
 - name: collect static files
   sudo: yes
   sudo_user: "{{ webapp_user }}"
-  command: vex web ./manage.py collectstatic --noinput chdir=/var/www/onelove
+  django_manage:
+    command: collectstatic
+    app_path: /var/www/onelove
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
   tags:
     - deploy
