@@ -1,9 +1,10 @@
 [program:workers]
-command=vex workers /vagrant/workers/worker.py
+command=vex workers celery -A workers worker --loglevel=INFO
 autostart=true
 autorestart=true
 stdout_logfile=/var/log/one-love/workers.log
-stderr_logfile=/var/log/one-love/workers.err
+stderr_logfile=/var/log/one-love/workers.log
 user={{ webapp_user }}
-numprocs={{ number_of_workers }}
-process_name=%(program_name)s_%(process_num)s
+directory=/home/{{ webapp_user }}
+killasgroup=true
+stopwaitsecs=15

@@ -6,10 +6,6 @@
     src: /vagrant/workers
     dest: "~{{ webapp_user }}/workers"
     state: link
-  notify:
-    - stop web supervisor
-    - remove socket file
-    - start web supervisor
   tags:
     - deploy
 
@@ -22,10 +18,6 @@
     dest: "~{{ webapp_user }}/workers"
     accept_hostkey: yes
     depth: 1
-  notify:
-    - stop web supervisor
-    - remove socket file
-    - start web supervisor
   tags:
     - deploy
 

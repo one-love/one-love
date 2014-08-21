@@ -21,7 +21,7 @@
   pip:
     requirements: "~{{ webapp_user }}/workers/requirements.txt"
     virtualenv: "~{{ webapp_user }}/.virtualenvs/workers"
-    state: latest
+    state: present
 
 - name: configure supervisor for workers
   sudo: yes
