@@ -1,14 +1,38 @@
-- name: install python-dev
+- name: ensure packages are installed
   sudo: yes
+  with_items: web_packages
   apt:
-    pkg: python-dev
+    pkg: "{{ item.name }}"
     state: latest
 
-- name: install sshpass
+- name: add uwsgi application
   sudo: yes
-  apt:
-    pkg: sshpass
-    state: latest
+  template:
+    src: uwsgi.ini.j2
+    dest: /etc/uwsgi/apps-available/onelove.ini
+    owner: root
+    group: root
+  notify:
+    - reload uwsgi
+
+- name: enable uwsgi appclication
+  sudo: yes
+  file:
+    src: ../apps-available/onelove.ini
+    dest: /etc/uwsgi/apps-enabled/onelove.ini
+    owner: root
+    group: root
+    state: link
+    force: true
+  notify:
+    - reload uwsgi
+
+- name: restart uwsgi
+  sudo: yes
+  service:
+    name: uwsgi
+    enabled: yes
+    state: restarted
 
 - name: ensure /var/www exists
   sudo: yes
@@ -55,13 +79,10 @@
 - name: configure supervisor
   sudo: yes
   template:
-    src: "supervisor/{{ item.name }}.conf.j2"
-    dest: "/etc/supervisor/conf.d/{{ item.name }}.conf"
+    src: supervisor/celery.conf.j2
+    dest: /etc/supervisor/conf.d/celery.conf
     owner: root
     group: root
-  with_items:
-    - name: celery
-    - name: web
   notify:
     - reload supervisor config
     - update supervisor process

@@ -1,0 +1,8 @@
+[uwsgi]
+virtualenv=/home/vagrant/.virtualenvs/web
+thread=3
+master=1
+env = DJANGO_SETTINGS_MODULE=onelove.settings
+module = django.core.handlers.wsgi:WSGIHandler()
+chdir = /var/www/onelove
+plugins = python

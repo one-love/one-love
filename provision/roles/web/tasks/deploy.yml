@@ -37,7 +37,7 @@
   pip:
     requirements: /var/www/onelove/requirements.txt
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
-    state: latest
+    state: present
 
 - name: collect static files
   sudo: yes

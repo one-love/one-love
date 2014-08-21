@@ -7,5 +7,6 @@
 - name: import postgresql repository key
   sudo: yes
   apt_key:
+    id: ACCC4CF8
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     state: present

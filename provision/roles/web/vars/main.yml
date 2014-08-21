@@ -1,0 +1,5 @@
+web_packages:
+  - name: python-dev
+  - name: sshpass
+  - name: uwsgi
+  - name: uwsgi-plugin-python

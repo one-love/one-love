@@ -9,3 +9,10 @@
   user:
     name: "{{ webapp_user }}"
     groups: supervisor,sudo
+
+- name: configure nginx user
+  sudo: yes
+  user:
+    name: nginx
+    groups: www-data
+    state: present

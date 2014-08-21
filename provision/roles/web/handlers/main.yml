@@ -5,3 +5,10 @@
 - name: start web supervisor
   sudo: yes
   command: supervisorctl start web
+
+- name: reload uwsgi
+  sudo: yes
+  service:
+    name: uwsgi
+    enabled: yes
+    state: reloaded

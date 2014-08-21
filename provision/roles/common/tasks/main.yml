@@ -27,4 +27,4 @@
   with_items: common_pip_packages
   pip:
     name: "{{ item.name }}"
-    state: latest
+    state: present

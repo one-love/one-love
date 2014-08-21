@@ -1,9 +1,0 @@
-[program:web]
-command=vex web gunicorn -b unix:///tmp/onelove.sock --pythonpath /var/www/onelove -w {{ number_of_web_workers }} onelove.wsgi:application
-autostart=true
-autorestart=true
-stdout_logfile=/var/log/one-love/web.log
-stderr_logfile=/var/log/one-love/web.log
-user={{ webapp_user }}
-stopsignal=KILL
-killassgroup=true
