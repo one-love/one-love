@@ -5,35 +5,6 @@
     pkg: "{{ item.name }}"
     state: latest
 
-- name: add uwsgi application
-  sudo: yes
-  template:
-    src: uwsgi.ini.j2
-    dest: /etc/uwsgi/apps-available/onelove.ini
-    owner: root
-    group: root
-  notify:
-    - reload uwsgi
-
-- name: enable uwsgi appclication
-  sudo: yes
-  file:
-    src: ../apps-available/onelove.ini
-    dest: /etc/uwsgi/apps-enabled/onelove.ini
-    owner: root
-    group: root
-    state: link
-    force: true
-  notify:
-    - reload uwsgi
-
-- name: restart uwsgi
-  sudo: yes
-  service:
-    name: uwsgi
-    enabled: yes
-    state: restarted
-
 - name: ensure /var/www exists
   sudo: yes
   file:
@@ -75,6 +46,35 @@
     group: "{{ webapp_user }}"
 
 - include: deploy.yml
+
+- name: add uwsgi application
+  sudo: yes
+  template:
+    src: uwsgi.ini.j2
+    dest: /etc/uwsgi/apps-available/onelove.ini
+    owner: root
+    group: root
+  notify:
+    - reload uwsgi
+
+- name: enable uwsgi appclication
+  sudo: yes
+  file:
+    src: ../apps-available/onelove.ini
+    dest: /etc/uwsgi/apps-enabled/onelove.ini
+    owner: root
+    group: root
+    state: link
+    force: true
+  notify:
+    - reload uwsgi
+
+- name: restart uwsgi
+  sudo: yes
+  service:
+    name: uwsgi
+    enabled: yes
+    state: restarted
 
 - name: configure supervisor
   sudo: yes

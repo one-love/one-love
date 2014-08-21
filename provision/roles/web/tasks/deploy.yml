@@ -9,9 +9,7 @@
     group: "{{ webapp_user }}"
     state: link
   notify:
-    - stop web supervisor
-    - remove socket file
-    - start web supervisor
+    - reload uwsgi
   tags:
     - deploy
 
@@ -25,9 +23,7 @@
     accept_hostkey: yes
     depth: 1
   notify:
-    - stop web supervisor
-    - remove socket file
-    - start web supervisor
+    - reload uwsgi
   tags:
     - deploy
 

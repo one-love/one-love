@@ -20,6 +20,4 @@
     owner: root
     group: root
   notify:
-    - stop supervisor
-    - remove socket file
-    - start supervisor
+    - restart supervisor

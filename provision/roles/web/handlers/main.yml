@@ -1,10 +1,6 @@
-- name: stop web supervisor
+- name: restart celery
   sudo: yes
-  command: supervisorctl stop web
-
-- name: start web supervisor
-  sudo: yes
-  command: supervisorctl start web
+  command: supervisorctl restart celery
 
 - name: reload uwsgi
   sudo: yes
