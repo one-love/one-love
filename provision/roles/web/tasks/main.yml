@@ -1,3 +1,15 @@
+- name: install python-dev
+  sudo: yes
+  apt:
+    pkg: python-dev
+    state: latest
+
+- name: install sshpass
+  sudo: yes
+  apt:
+    pkg: sshpass
+    state: latest
+
 - name: ensure /var/www exists
   sudo: yes
   file:
@@ -14,15 +26,42 @@
     group: "{{ webapp_user }}"
     state: directory
 
-- include: deploy.yml
+- name: ensure /var/repos exists
+  sudo: yes
+  file:
+    path: /var/repos
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: directory
 
-- name: configure supervisor for web
+- name: ensure .ssh exists
+  sudo: yes
+  file:
+    path: "~{{ webapp_user }}"
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: directory
+
+- name: configure ssh
   sudo: yes
   template:
-    src: supervisor.j2
-    dest: /etc/supervisor/conf.d/web.conf
+    src: ssh/config.j2
+    dest: "~{{ webapp_user }}/.ssh/config"
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+
+- include: deploy.yml
+
+- name: configure supervisor
+  sudo: yes
+  template:
+    src: "supervisor/{{ item.name }}.conf.j2"
+    dest: "/etc/supervisor/conf.d/{{ item.name }}.conf"
     owner: root
     group: root
+  with_items:
+    - name: celery
+    - name: web
   notify:
     - reload supervisor config
     - update supervisor process

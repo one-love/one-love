@@ -1,0 +1,9 @@
+[program:celery]
+command=vex web celery -A onelove worker --workdir=/var/www/onelove -l info
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/one-love/celery.log
+stderr_logfile=/var/log/one-love/celery.log
+user={{ webapp_user }}
+stopsignal=KILL
+killassgroup=true
