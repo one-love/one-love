@@ -1,2 +1,4 @@
 from __future__ import absolute_import
 from .{{ stage }} import *
+
+DATABASES['default']['PASSWORD'] = '{{ db_password }}'

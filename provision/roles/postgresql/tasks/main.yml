@@ -3,3 +3,15 @@
   apt:
     pkg: postgresql-9.3
     state: latest
+
+- name: install python-psycopg2
+  sudo: yes
+  apt:
+    pkg: python-psycopg2
+    state: latest
+
+- name: install libpq-dev
+  sudo: yes
+  apt:
+    pkg: libpq-dev
+    state: latest
