@@ -15,6 +15,8 @@ To test uppon cloning:
     vagrant up
     vagrant provision
     vagrant ssh
+    sudo /etc/init.d/uwsgi restart
+    sudo /etc/init.d/supervisor restart
     tail -f /var/log/one-love/celery.log # to watch the workers
     
 Point your browser to [Vagrant IP](http://192.168.33.33/provision/)
