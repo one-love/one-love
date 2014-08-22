@@ -27,6 +27,16 @@
   tags:
     - deploy
 
+- name: configure web app
+  sudo: yes
+  template:
+    src: __init__.py.j2
+    dest: /var/www/onelove/onelove/settings/__init__.py
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+  notify:
+    - reload uwsgi
+
 - name: install pip packages
   sudo: yes
   sudo_user: "{{ webapp_user }}"
@@ -42,5 +52,14 @@
     command: collectstatic
     app_path: /var/www/onelove
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+  tags:
+    - deploy
+
+- name: remove .pyc files
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  command: find . -name '*.pyc' -delete chdir=/var/www/onelove
+  notify:
+    - reload uwsgi
   tags:
     - deploy

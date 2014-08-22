@@ -74,7 +74,7 @@
   service:
     name: uwsgi
     enabled: yes
-    state: restarted
+    state: started
 
 - name: configure supervisor
   sudo: yes
