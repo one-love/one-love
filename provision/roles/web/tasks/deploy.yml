@@ -1,7 +1,7 @@
 - name: deploy onelove if inside vagrant
   sudo: yes
   sudo_user: "{{ webapp_user }}"
-  when: '"vm" in group_names'
+  when: '"vagrant" in group_names'
   file:
     src: /vagrant/web
     dest: /var/www/onelove
@@ -17,7 +17,7 @@
 - name: deploy onelove if outside vagrant
   sudo: yes
   sudo_user: "{{ webapp_user }}"
-  when: '"vm" not in group_names'
+  when: '"vagrant" not in group_names'
   git:
     repo: https://github.com/mekanix/one-love-web
     dest: /var/www/onelove
