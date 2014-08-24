@@ -1,6 +1,8 @@
 One Love
 ========
 
+[![Build Status](https://travis-ci.org/one-love/one-love.svg?branch=master)](https://api.travis-ci.org/one-love/one-love.png)
+
 Ever wanted a "one click" solution to Ansible provisioning which is hosting
 provider agnostic with ability to migrate your whole machine between different
 providers? One Love project aims to provide this. First goal is Wordpress and
@@ -15,8 +17,6 @@ To test uppon cloning:
     vagrant up
     vagrant provision
     vagrant ssh
-    sudo /etc/init.d/uwsgi restart
-    supervisorctl restart all
     tail -f /var/log/one-love/celery.log # to watch the workers
     
 Point your browser to [Vagrant IP](http://192.168.33.33/provision/)
