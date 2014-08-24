@@ -6,7 +6,7 @@ install:
   - pip install ansible
 
 script:
-  - ansible-playbook -i travis site.yml --syntax-check
+  - ansible-playbook -i provision/travis provision/site.yml --syntax-check
 
 notifications:
   irc:
