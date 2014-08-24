@@ -2,6 +2,14 @@
   sudo: yes
   command: supervisorctl restart celery
 
+- name: load migrations
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  django_manage:
+    app_path: /var/www/onelove
+    command: migrate
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+
 - name: reload uwsgi
   sudo: yes
   service:

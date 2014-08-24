@@ -9,6 +9,7 @@
     group: "{{ webapp_user }}"
     state: link
   notify:
+    - load migrations
     - reload uwsgi
   tags:
     - deploy
@@ -23,6 +24,7 @@
     accept_hostkey: yes
     depth: 1
   notify:
+    - load migrations
     - reload uwsgi
   tags:
     - deploy
