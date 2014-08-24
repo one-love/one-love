@@ -1,7 +1,7 @@
 One Love
 ========
 
-[![Build Status](https://travis-ci.org/one-love/one-love.svg?branch=master)](https://api.travis-ci.org/one-love/one-love.png)
+[![Build Status](https://travis-ci.org/one-love/one-love.svg?branch=master)](https://travis-ci.org/one-love/one-love)
 
 Ever wanted a "one click" solution to Ansible provisioning which is hosting
 provider agnostic with ability to migrate your whole machine between different
