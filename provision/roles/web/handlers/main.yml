@@ -10,6 +10,13 @@
     command: migrate
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
 
+- name: restart uwsgi
+  sudo: yes
+  service:
+    name: uwsgi
+    enabled: yes
+    state: started
+
 - name: reload uwsgi
   sudo: yes
   service:

@@ -93,14 +93,7 @@
     state: link
     force: true
   notify:
-    - reload uwsgi
-
-- name: restart uwsgi
-  sudo: yes
-  service:
-    name: uwsgi
-    enabled: yes
-    state: started
+    - restart uwsgi
 
 - name: configure supervisor
   sudo: yes
