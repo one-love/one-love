@@ -8,7 +8,4 @@
 
 - name: restart supervisor
   sudo: yes
-  service:
-    name: supervisor
-    enabled: yes
-    state: restarted
+  command: supervisorctl restart

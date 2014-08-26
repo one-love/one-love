@@ -16,10 +16,3 @@
     name: uwsgi
     enabled: yes
     state: started
-
-- name: reload uwsgi
-  sudo: yes
-  service:
-    name: uwsgi
-    enabled: yes
-    state: reloaded

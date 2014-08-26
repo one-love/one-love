@@ -10,7 +10,7 @@
     state: link
   notify:
     - load migrations
-    - reload uwsgi
+    - restart uwsgi
   tags:
     - deploy
 
@@ -25,7 +25,7 @@
     depth: 1
   notify:
     - load migrations
-    - reload uwsgi
+    - restart uwsgi
   tags:
     - deploy
 
@@ -37,7 +37,7 @@
     owner: "{{ webapp_user }}"
     group: "{{ webapp_user }}"
   notify:
-    - reload uwsgi
+    - restart uwsgi
 
 - name: install pip packages
   sudo: yes
@@ -62,6 +62,6 @@
   sudo_user: "{{ webapp_user }}"
   command: find . -name '*.pyc' -delete chdir=/var/www/onelove
   notify:
-    - reload uwsgi
+    - restart uwsgi
   tags:
     - deploy
