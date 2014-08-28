@@ -6,3 +6,5 @@ vagrant_ansible_inventory_*
 *.swp
 provision/roles/proxy_php/files/www/www/composer.*
 provision/roles/proxy_php/files/www/www/vendor
+Gemfile.lock
+_site/
