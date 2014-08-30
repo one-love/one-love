@@ -73,6 +73,14 @@
     command: syncdb
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
 
+- name: migrate DB
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  django_manage:
+    app_path: /var/www/onelove
+    command: migrate
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+
 - name: add uwsgi application
   sudo: yes
   template:
