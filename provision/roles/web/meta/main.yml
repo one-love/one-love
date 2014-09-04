@@ -1,6 +1,6 @@
 dependencies:
   - { role: common }
+  - { role: mongodb }
   - { role: users }
-  - { role: postgresql }
   - { role: supervisor }
   - { role: nginx }

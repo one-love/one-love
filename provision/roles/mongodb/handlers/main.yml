@@ -1,0 +1,7 @@
+- name: restart mongodb
+  sudo: yes
+  service:
+    name: mongodb
+    enabled: yes
+    state: restarted
+

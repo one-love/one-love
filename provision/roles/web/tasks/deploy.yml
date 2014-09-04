@@ -1,30 +1,12 @@
-- name: deploy onelove if inside vagrant
+- name: deploy onelove
   sudo: yes
   sudo_user: "{{ webapp_user }}"
-  when: '"vagrant" in group_names'
-  file:
-    src: /vagrant/web
-    dest: /var/www/onelove
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
-    state: link
-  notify:
-    - load migrations
-    - restart uwsgi
-  tags:
-    - deploy
-
-- name: deploy onelove if outside vagrant
-  sudo: yes
-  sudo_user: "{{ webapp_user }}"
-  when: '"vagrant" not in group_names'
   git:
-    repo: https://github.com/mekanix/one-love-web
+    repo: https://github.com/one-love/web
     dest: /var/www/onelove
     accept_hostkey: yes
     depth: 1
   notify:
-    - load migrations
     - restart uwsgi
   tags:
     - deploy

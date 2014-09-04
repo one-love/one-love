@@ -2,7 +2,6 @@
   hosts: all
   pre_tasks:
     - include: roles/common/pre_tasks/main.yml
-    - include: roles/postgresql/pre_tasks/main.yml
     - include: roles/nginx/pre_tasks/main.yml
   roles:
     - web

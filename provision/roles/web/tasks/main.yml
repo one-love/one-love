@@ -47,40 +47,6 @@
 
 - include: deploy.yml
 
-- name: create DB
-  sudo: yes
-  sudo_user: postgres
-  postgresql_db:
-    name: onelove
-    encoding: 'UTF-8'
-    template: 'template0'
-
-- name: create DB user
-  sudo: yes
-  sudo_user: postgres
-  postgresql_user:
-    db: onelove
-    user: onelove
-    password: onelove
-    priv: ALL
-    role_attr_flags: NOSUPERUSER,NOCREATEDB
-
-- name: syncdb
-  sudo: yes
-  sudo_user: "{{ webapp_user }}"
-  django_manage:
-    app_path: /var/www/onelove
-    command: syncdb
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
-
-- name: migrate DB
-  sudo: yes
-  sudo_user: "{{ webapp_user }}"
-  django_manage:
-    app_path: /var/www/onelove
-    command: migrate
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
-
 - name: add uwsgi application
   sudo: yes
   template:
@@ -89,7 +55,7 @@
     owner: root
     group: root
   notify:
-    - reload uwsgi
+    - restart uwsgi
 
 - name: enable uwsgi appclication
   sudo: yes
