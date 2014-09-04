@@ -3,6 +3,8 @@ common_pretask_packages:
 
 common_packages:
   - name: git-core
+  - name: libxml2-dev
+  - name: libxslt1-dev
   - name: openntpd
   - name: python-pip
   - name: rabbitmq-server
