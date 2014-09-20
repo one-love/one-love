@@ -1,0 +1,6 @@
+- name: restart openntpd
+  sudo: yes
+  service:
+    name: openntpd
+    enabled: yes
+    state: restarted
