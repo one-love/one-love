@@ -15,7 +15,7 @@
   sudo: yes
   template:
     src: __init__.py.j2
-    dest: /var/www/onelove/onelove/settings/__init__.py
+    dest: /var/www/onelove/project/settings/__init__.py
     owner: "{{ webapp_user }}"
     group: "{{ webapp_user }}"
   notify:
@@ -47,3 +47,11 @@
     - restart uwsgi
   tags:
     - deploy
+
+- name: migrate DB
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  django_manage:
+    app_path: /var/www/onelove
+    command: migrate
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"

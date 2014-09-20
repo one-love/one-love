@@ -45,6 +45,24 @@
     owner: "{{ webapp_user }}"
     group: "{{ webapp_user }}"
 
+- name: create DB
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db:
+    name: onelove
+    encoding: 'UTF-8'
+    template: 'template0'
+
+- name: create DB user
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user:
+    db: onelove
+    user: onelove
+    password: onelove
+    priv: ALL
+    role_attr_flags: NOSUPERUSER,NOCREATEDB
+
 - include: deploy.yml
 
 - name: add uwsgi application

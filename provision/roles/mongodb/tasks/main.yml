@@ -1,8 +1,0 @@
-- name: install packages
-  sudo: yes
-  with_items: mongodb_packages
-  apt:
-    pkg: "{{ item.name }}"
-    state: latest
-  notify:
-    - restart mongodb
