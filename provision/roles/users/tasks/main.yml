@@ -16,3 +16,20 @@
     name: nginx
     groups: www-data
     state: present
+
+- name: ensure webapp_user have bin dir
+  sudo: yes
+  file:
+    path: "~{{ webapp_user}}/bin"
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    state: directory
+
+- name: copy runserver script
+  sudo: yes
+  template:
+    src: runserver.sh.j2
+    dest: "~{{ webapp_user }}/bin/runserver.sh"
+    owner: "{{ webapp_user }}"
+    group: "{{ webapp_user }}"
+    mode: 0755

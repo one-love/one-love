@@ -1,3 +1,11 @@
+- name: set DNS servers
+  sudo: yes
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+
 - name: update apt
   sudo: yes
   apt:
