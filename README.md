@@ -17,7 +17,9 @@ To test uppon cloning:
 
     vagrant up
     vagrant provision
-    vagrant ssh
+    vagrant ssh onelove
     tail -f /var/log/one-love/celery.log # to watch the workers
     
-Point your browser to [Vagrant IP](http://192.168.33.33/provision/)
+Point your browser to [Vagrant IP](http://192.168.33.33/) and login with:<br/>
+user: admin@example.com<br/>
+pass: Sekrit
