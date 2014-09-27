@@ -37,6 +37,15 @@
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
     state: present
 
+- name: install pip packages in development
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  when: '"vagrant" in group_names'
+  pip:
+    requirements: /vagrant/web/requirements_dev.txt
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    state: present
+
 - name: collect static files
   sudo: yes
   sudo_user: "{{ webapp_user }}"
