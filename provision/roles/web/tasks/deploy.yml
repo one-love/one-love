@@ -29,15 +29,23 @@
     owner: "{{ webapp_user }}"
     group: "{{ webapp_user }}"
 
-- name: install pip packages
+- name: install common pip packages
   sudo: yes
   sudo_user: "{{ webapp_user }}"
   pip:
-    requirements: /var/www/onelove/requirements.txt
+    requirements: /var/www/onelove/requirements_common.txt
     virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
     state: present
 
-- name: install pip packages in development
+- name: install production pip packages
+  sudo: yes
+  sudo_user: "{{ webapp_user }}"
+  pip:
+    requirements: /var/www/onelove/requirements_prod.txt
+    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    state: present
+
+- name: install development pip packages
   sudo: yes
   sudo_user: "{{ webapp_user }}"
   when: '"vagrant" in group_names'
