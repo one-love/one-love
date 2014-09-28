@@ -1,9 +1,0 @@
-[program:celery]
-command=/home/{{ webapp_user }}/.virtualenvs/web/bin/celery -A onelove worker --workdir=/var/www/onelove -l info
-autostart=true
-autorestart=true
-stdout_logfile=/var/log/one-love/celery.log
-stderr_logfile=/var/log/one-love/celery.log
-user={{ webapp_user }}
-killassgroup=true
-directory=/home/{{ webapp_user }}

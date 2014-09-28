@@ -1,6 +1,6 @@
 - name: ensure packages are installed
   sudo: yes
-  with_items: web_packages
+  with_items: api_packages
   apt:
     pkg: "{{ item.name }}"
     state: latest
@@ -9,41 +9,41 @@
   sudo: yes
   file:
     path: /var/www
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: ensure /var/static exists
   sudo: yes
   file:
     path: /var/static
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: ensure /var/repos exists
   sudo: yes
   file:
     path: /var/repos
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: ensure .ssh exists
   sudo: yes
   file:
-    path: "~{{ webapp_user }}"
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    path: "~{{ api_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: configure ssh
   sudo: yes
   template:
     src: ssh/config.j2
-    dest: "~{{ webapp_user }}/.ssh/config"
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    dest: "~{{ api_user }}/.ssh/config"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
 
 - name: create DB
   sudo: yes

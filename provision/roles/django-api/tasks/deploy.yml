@@ -1,8 +1,8 @@
 - name: deploy onelove
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   git:
-    repo: https://github.com/one-love/web
+    repo: https://github.com/one-love/api
     dest: /var/www/onelove
     accept_hostkey: yes
     depth: 1
@@ -11,62 +11,62 @@
   tags:
     - deploy
 
-- name: configure web app
+- name: configure api server
   sudo: yes
   template:
     src: __init__.py.j2
     dest: /var/www/onelove/project/settings/__init__.py
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
   notify:
     - restart uwsgi
 
-- name: configure web app for development
+- name: configure api server for development
   sudo: yes
   template:
     src: __init__.py.j2
-    dest: /vagrant/web/project/settings/__init__.py
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    dest: /vagrant/api/project/settings/__init__.py
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
 
 - name: install common pip packages
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   pip:
     requirements: /var/www/onelove/requirements_common.txt
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"
     state: present
 
 - name: install production pip packages
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   pip:
     requirements: /var/www/onelove/requirements_prod.txt
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"
     state: present
 
 - name: install development pip packages
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   when: '"vagrant" in group_names'
   pip:
-    requirements: /vagrant/web/requirements_dev.txt
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    requirements: /vagrant/api/requirements_dev.txt
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"
     state: present
 
 - name: collect static files
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   django_manage:
     command: collectstatic
     app_path: /var/www/onelove
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"
   tags:
     - deploy
 
 - name: remove .pyc files
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   command: find . -name '*.pyc' -delete chdir=/var/www/onelove
   notify:
     - restart uwsgi
@@ -75,8 +75,8 @@
 
 - name: migrate DB
   sudo: yes
-  sudo_user: "{{ webapp_user }}"
+  sudo_user: "{{ api_user }}"
   django_manage:
     app_path: /var/www/onelove
     command: migrate
-    virtualenv: "~{{ webapp_user }}/.virtualenvs/web"
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"

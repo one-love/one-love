@@ -8,8 +8,8 @@
   sudo: yes
   file:
     path: /var/log/one-love
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: configure supervisor
