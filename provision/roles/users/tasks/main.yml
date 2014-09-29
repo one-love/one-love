@@ -4,10 +4,10 @@
     name: supervisor
     state: present
 
-- name: ensure webapp_user exists
+- name: ensure api_user exists
   sudo: yes
   user:
-    name: "{{ webapp_user }}"
+    name: "{{ api_user }}"
     groups: supervisor,sudo
 
 - name: configure nginx user
@@ -17,19 +17,19 @@
     groups: www-data
     state: present
 
-- name: ensure webapp_user have bin dir
+- name: ensure api_user have bin dir
   sudo: yes
   file:
-    path: "~{{ webapp_user}}/bin"
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    path: "~{{ api_user}}/bin"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     state: directory
 
 - name: copy runserver script
   sudo: yes
   template:
     src: runserver.sh.j2
-    dest: "~{{ webapp_user }}/bin/runserver.sh"
-    owner: "{{ webapp_user }}"
-    group: "{{ webapp_user }}"
+    dest: "~{{ api_user }}/bin/runserver.sh"
+    owner: "{{ api_user }}"
+    group: "{{ api_user }}"
     mode: 0755

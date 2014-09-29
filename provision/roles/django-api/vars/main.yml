@@ -1,4 +1,4 @@
-web_packages:
+api_packages:
   - name: python-dev
   - name: sshpass
   - name: uwsgi

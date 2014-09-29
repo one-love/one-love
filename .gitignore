@@ -4,7 +4,6 @@ vagrant_ansible_inventory_*
 .ropeproject/
 *.log
 *.swp
-provision/roles/proxy_php/files/www/www/composer.*
-provision/roles/proxy_php/files/www/www/vendor
 Gemfile.lock
 _site/
+projects/

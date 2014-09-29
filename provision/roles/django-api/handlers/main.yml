@@ -7,4 +7,4 @@
   service:
     name: uwsgi
     enabled: yes
-    state: started
+    state: restarted
