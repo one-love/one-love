@@ -6,4 +6,4 @@ vagrant_ansible_inventory_*
 *.swp
 Gemfile.lock
 _site/
-api/
+projects/

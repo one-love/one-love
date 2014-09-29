@@ -21,11 +21,26 @@
   notify:
     - restart uwsgi
 
+- name: ensure /vagrant/projects exists
+  when: '"vagrant" in group_names'
+  file:
+    path: vagrant/projects
+    state: directory
+
+- name: deploy onelove to /vagrant
+  when: '"vagrant" in group_names'
+  git:
+    repo: https://github.com/one-love/api
+    dest: /vagrant/projects/api
+    accept_hostkey: yes
+    depth: 1
+
 - name: configure api server for development
+  when: '"vagrant" in group_names'
   sudo: yes
   template:
     src: __init__.py.j2
-    dest: /vagrant/api/project/settings/__init__.py
+    dest: /vagrant/projects/api/project/settings/__init__.py
     owner: "{{ api_user }}"
     group: "{{ api_user }}"
 
@@ -50,7 +65,7 @@
   sudo_user: "{{ api_user }}"
   when: '"vagrant" in group_names'
   pip:
-    requirements: /vagrant/api/requirements_dev.txt
+    requirements: /vagrant/projects/api/requirements_dev.txt
     virtualenv: "~{{ api_user }}/.virtualenvs/api"
     state: present
 
