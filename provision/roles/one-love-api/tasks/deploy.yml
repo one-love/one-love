@@ -29,11 +29,11 @@
 
 - name: deploy onelove to /vagrant
   when: '"vagrant" in group_names'
-  git:
-    repo: https://github.com/one-love/api
-    dest: /vagrant/projects/api
-    accept_hostkey: yes
-    depth: 1
+  command: git clone https://github.com/one-love/api /vagrant/projects/api
+  args:
+    creates: /vagrant/projects/api
+  notify:
+    - change origin
 
 - name: configure api server for development
   when: '"vagrant" in group_names'
