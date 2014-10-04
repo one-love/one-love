@@ -69,6 +69,15 @@
     virtualenv: "~{{ api_user }}/.virtualenvs/api"
     state: present
 
+- name: install test pip packages
+  sudo: yes
+  sudo_user: "{{ api_user }}"
+  when: '"vagrant" in group_names'
+  pip:
+    requirements: /vagrant/projects/api/requirements_test.txt
+    virtualenv: "~{{ api_user }}/.virtualenvs/api"
+    state: present
+
 - name: collect static files
   sudo: yes
   sudo_user: "{{ api_user }}"
