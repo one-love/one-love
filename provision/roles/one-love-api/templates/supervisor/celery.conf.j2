@@ -1,5 +1,5 @@
 [program:celery]
-command=/home/{{ api_user }}/.virtualenvs/api/bin/celery -A onelove worker --workdir=/var/www/onelove -l info
+command=/home/{{ api_user }}/.virtualenvs/api/bin/celery -A project worker --workdir=/vagrant/projects/api -l info
 autostart=true
 autorestart=true
 stdout_logfile=/var/log/one-love/celery.log
