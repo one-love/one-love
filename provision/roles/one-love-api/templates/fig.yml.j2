@@ -1,0 +1,10 @@
+db:
+  image: postgres:9.3
+
+web:
+  image: mekanix/api
+  ports:
+    - "8000:8000"
+  links:
+    - db
+

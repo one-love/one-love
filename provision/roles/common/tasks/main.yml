@@ -17,6 +17,15 @@
   notify:
     - restart openntpd
 
+- name: link docker.io to docker
+  sudo: yes
+  file:
+    src: /usr/bin/docker
+    dest: /usr/bin/docker.io
+    owner: root
+    group: root
+    state: link
+
 - name: install pip packages
   sudo: yes
   with_items: common_pip_packages
