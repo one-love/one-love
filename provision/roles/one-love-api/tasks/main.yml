@@ -1,11 +1,12 @@
-- name: configure fig
+---
+- name: copy postgres service file
   sudo: yes
-  template:
-    src: fig.yml.j2
-    dest: /etc/fig.yml
-    owner: root
-    group: root
+  copy:
+    src: postgres.service
+    dest: /tmp/postgres.service
 
-- name: run fig
+- name: enable postgres service
   sudo: yes
-  command: fig -f /etc/fig.yml up -d
+  command: fleetctl start postgres.service
+  args:
+    chdir: /tmp
