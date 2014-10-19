@@ -53,7 +53,6 @@ Vagrant.configure("2") do |config|
       config.vm.provision :ansible do |ansible|
         ansible.playbook = "provision/site.yml"
         ansible.host_key_checking = false
-        ansible.inventory_path = "provision/vagrant"
       end
 
 
