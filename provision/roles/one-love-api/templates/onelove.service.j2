@@ -1,0 +1,13 @@
+[Unit]
+Description=OneLove
+After=postgres.service
+Requires=postgres.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill onelove
+ExecStartPre=-/usr/bin/docker rm onelove
+ExecStartPre=/usr/bin/docker pull mekanix/api
+ExecStart=/usr/bin/docker run -p 8000:8000 --link postgres:db --name onelove mekanix/api
+ExecStop=/usr/bin/docker stop onelove
+

@@ -1,25 +1,42 @@
-- name: update apt
-  sudo: yes
-  apt:
-    update_cache: yes
+- name: check if bootstrap is needed
+  raw: stat $HOME/.bootstrapped
+  register: need_bootstrap
+  ignore_errors: True
 
-- name: update all packages to the latest version
-  sudo: yes
-  apt:
-    upgrade: dist
+- name: Run bootstrap.sh
+  script: bootstrap.sh
+  when: need_bootstrap | failed
 
-- name: install packages
-  sudo: yes
-  with_items: common_packages
-  apt:
-    pkg: "{{ item.name }}"
-    state: latest
-  notify:
-    - restart openntpd
+- name: Check if we need to install pip
+  shell: "{{ ansible_python_interpreter }} -m pip --version"
+  register: need_pip
+  ignore_errors: True
+  changed_when: false
 
-- name: install pip packages
+- name: Copy get-pip.py
+  copy: src=get-pip.py dest=/home/core/get-pip.py
+  when: need_pip | failed
+
+- name: Install pip
+  shell: "{{ ansible_python_interpreter }} get-pip.py"
+  when: need_pip | failed
+
+- name: Install pip launcher
+  copy:
+    src: runner
+    dest: /home/core/bin/pip
+    mode: 0755
+
+- name: start etcd
   sudo: yes
-  with_items: common_pip_packages
-  pip:
-    name: "{{ item.name }}"
-    state: present
+  service:
+    name: etcd
+    enabled: yes
+    state: started
+
+- name: start fleet
+  sudo: yes
+  service:
+    name: fleet
+    enabled: yes
+    state: started
