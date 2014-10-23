@@ -1,4 +1,0 @@
-api_user: vagrant
-stage: vagrant
-db_password: onelove
-db_user_permissions: "NOSUPERUSER,CREATEDB"

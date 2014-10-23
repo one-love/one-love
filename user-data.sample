@@ -1,0 +1,12 @@
+#cloud-config
+
+coreos:
+  etcd:
+    # Get discovery endpoint with curl https://discovery.etcd.io/new
+    # and put that URL below
+    # discovery: https://discovery.etcd.io/<token>
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start

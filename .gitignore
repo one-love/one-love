@@ -1,9 +1,4 @@
-*.pyc
-vagrant_ansible_inventory_*
 .vagrant/
-.ropeproject/
-*.log
-*.swp
-Gemfile.lock
-_site/
-projects/
+log/
+user-data
+config.rb

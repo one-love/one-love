@@ -1,5 +1,5 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
+# # vi: set ft=ruby :
 
 require 'fileutils'
 
@@ -50,11 +50,6 @@ Vagrant.configure("2") do |config|
   (1..$num_instances).each do |i|
     config.vm.define vm_name = "core-%02d" % i do |config|
       config.vm.hostname = vm_name
-      config.vm.provision :ansible do |ansible|
-        ansible.playbook = "provision/site.yml"
-        ansible.host_key_checking = false
-      end
-
 
       if $enable_serial_logging
         logdir = File.join(File.dirname(__FILE__), "log")
@@ -90,17 +85,18 @@ Vagrant.configure("2") do |config|
         vb.cpus = $vb_cpus
       end
 
-      ip = "172.12.8.#{i+100}"
+      ip = "172.17.8.#{i+100}"
       config.vm.network :private_network, ip: ip
 
       # Uncomment below to enable NFS for sharing the host machine into the coreos-vagrant VM.
-      #config.vm.synced_folder ".", "/home/core/share", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
+      config.vm.synced_folder ".", "/home/core/share", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
 
       if File.exist?(CLOUD_CONFIG_PATH)
         config.vm.provision :file, :source => "#{CLOUD_CONFIG_PATH}", :destination => "/tmp/vagrantfile-user-data"
         config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
       end
-
+      config.vm.provision :shell, :inline => "fleetctl start /home/core/share/postgres.service"
+      config.vm.provision :shell, :inline => "fleetctl start /home/core/share/onelove.service"
     end
   end
 end

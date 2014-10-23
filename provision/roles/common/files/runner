@@ -1,2 +1,0 @@
-#!/bin/bash
-LD_LIBRARY_PATH=/home/core/pypy/lib:$LD_LIBRARY_PATH /home/core/pypy/bin/$(basename $0) $@
