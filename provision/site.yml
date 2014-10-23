@@ -1,6 +1,0 @@
----
-- name: One Love project provisioning
-  hosts: all
-  gather_facts: False
-  roles:
-    - one-love-api

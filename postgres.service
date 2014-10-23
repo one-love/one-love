@@ -6,5 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull postgres
+ExecStartPre=-/usr/bin/docker kill postgres
+ExecStartPre=-/usr/bin/docker rm postgres
 ExecStart=/usr/bin/docker run --name postgres postgres
 ExecStop=/usr/bin/docker stop postgres

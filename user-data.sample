@@ -1,0 +1,10 @@
+#cloud-config
+
+coreos:
+  etcd:
+    # discovery: https://discovery.etcd.io/<token>
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
