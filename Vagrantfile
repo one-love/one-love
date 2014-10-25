@@ -98,6 +98,7 @@ Vagrant.configure("2") do |config|
       config.vm.provision :shell, :inline => "fleetctl start /home/core/share/postgres.service"
       config.vm.provision :shell, :inline => "fleetctl start /home/core/share/onelove.service"
       config.vm.provision :shell, :inline => "fleetctl start /home/core/share/nginx.service"
+      config.vm.provision :shell, :inline => "etcdctl set /onelove/upstream/app 'app:9000'"
     end
   end
 end

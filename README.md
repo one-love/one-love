@@ -12,4 +12,4 @@ One Love
   - Code and services on the host are shared with Vagrant box through NFS
 
 ### First run
-Clone this repo and `cd` into it. Set user-data with `cp user-data.sample user-data`. Get the discovery endpoint with `curl https://discovery.etcd.io/new`, and put it in user-data. Run `vagrant up`. The process will take a while and should give you fully configured VirtualBox VM instance. Point your browser to [Vagrant VM](http://172.17.8.101:8000/api/v1). Login with admin@example.com/Sekrit
+Clone this repo and `cd` into it. Set user-data with `cp user-data.sample user-data`. Run `vagrant up`. The process will take a while and should give you fully configured VirtualBox VM instance. Point your browser to [Vagrant VM](http://172.17.8.101/api/v1). Login with admin@example.com/Sekrit
