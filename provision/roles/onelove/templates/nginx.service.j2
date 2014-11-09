@@ -1,10 +1,14 @@
 [Unit]
 Description=NginX
-After=api.service
+After=api.service network.target
 Requires=api.service
+Wants=network.target
 
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull onelove/nginx
 ExecStart=/usr/bin/docker run -p 80:80 --volumes-from api --dns 172.17.42.1 --name nginx --rm onelove/nginx
 ExecStop=/usr/bin/docker stop nginx
+
+[Install]
+WantedBy=multi-user.target
