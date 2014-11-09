@@ -1,0 +1,11 @@
+[Unit]
+Description=PostgreSQL
+After=registrator.service
+Requires=registrator.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/bin/mkdir -p /var/lib/docker/volumes/postgresql
+ExecStartPre=/usr/bin/docker pull paintedfox/postgresql:latest
+ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data --dns 172.17.42.1 --rm --name postgresql paintedfox/postgresql
+ExecStop=/usr/bin/docker stop postgresql

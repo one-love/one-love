@@ -1,0 +1,10 @@
+[Unit]
+Description=Registrator
+After=consul.service
+Requires=consul.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull progrium/registrator
+ExecStart=/usr/bin/docker run -v /var/run/docker.sock:/tmp/docker.sock --rm --name registrator progrium/registrator consul://172.17.42.1:8500
+ExecStop=/usr/bin/docker stop registrator

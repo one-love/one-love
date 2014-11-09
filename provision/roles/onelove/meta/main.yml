@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Goran Mekić
+  description:
+  company: One Love
+  license: GPLv3
+  min_ansible_version: 1.6
+  platforms:
+  - name: Debian
+    versions:
+      - jessie
+  categories:
+  - cloud
+  - clustering
+
+dependencies:
+  - { role: common }

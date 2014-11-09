@@ -1,0 +1,5 @@
+---
+onelove_services:
+  - name: postgresql
+  - name: api
+  - name: nginx

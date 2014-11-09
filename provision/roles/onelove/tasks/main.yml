@@ -1,0 +1,24 @@
+---
+- name: set password
+  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
+
+- name: add onelove services
+  sudo: yes
+  with_items: onelove_services
+  template:
+    src: "{{ item.name }}.service.j2"
+    dest: "/lib/systemd/system/{{ item.name }}.service"
+    owner: root
+    group: root
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
+
+- name: start onelove services
+  sudo: yes
+  with_items: onelove_services
+  service:
+    name: "{{ item.name }}"
+    enabled: yes
+    state: started
