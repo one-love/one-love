@@ -1,10 +1,14 @@
 [Unit]
 Description=OneLove
-After=postgresql.service
+After=postgresql.service network.target
 Requires=postgresql.service
+Wants=network.target
 
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull onelove/api
 ExecStart=/usr/bin/docker run -P --dns 172.17.42.1 --name api --rm onelove/api
 ExecStop=/usr/bin/docker stop api
+
+[Install]
+WantedBy=multi-user.target

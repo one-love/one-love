@@ -1,7 +1,8 @@
 [Unit]
 Description=PostgreSQL
-After=registrator.service
+After=registrator.service network.target
 Requires=registrator.service
+Wants=network.target
 
 [Service]
 TimeoutStartSec=0
@@ -9,3 +10,6 @@ ExecStartPre=-/bin/mkdir -p /var/lib/docker/volumes/postgresql
 ExecStartPre=/usr/bin/docker pull paintedfox/postgresql:latest
 ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data --dns 172.17.42.1 --rm --name postgresql paintedfox/postgresql
 ExecStop=/usr/bin/docker stop postgresql
+
+[Install]
+WantedBy=multi-user.target
