@@ -6,8 +6,10 @@ Wants=network.target
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill nginx
+ExecStartPre=-/usr/bin/docker rm nginx
 ExecStartPre=/usr/bin/docker pull onelove/nginx
-ExecStart=/usr/bin/docker run -p 80:80 --volumes-from api --dns 172.17.42.1 --name nginx --rm onelove/nginx
+ExecStart=/usr/bin/docker run -p 80:80 --volumes-from api --dns 172.17.42.1 --name nginx --rm --volumes-from consul-template onelove/nginx
 ExecStop=/usr/bin/docker stop nginx
 
 [Install]
