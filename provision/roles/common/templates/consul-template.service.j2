@@ -1,0 +1,16 @@
+[Unit]
+Description=Consul Template
+After=consul.service
+Requires=consul.service
+Wants=consul.target
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill consul-template
+ExecStartPre=-/usr/bin/docker rm consul-template
+ExecStartPre=/usr/bin/docker pull onelove/consul-template
+ExecStart=/usr/bin/docker run -i -t --rm --name consul-template onelove/consul-template
+ExecStop=/usr/bin/docker stop consul-template
+
+[Install]
+WantedBy=multi-user.target
