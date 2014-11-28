@@ -1,1 +1,3 @@
+---
 db_password: 'jaMXoXrEeYwCfNM0KGlUk2OHXDfpQMqK5yNt4C5EsIpI3bLi5FCcPJ9gp2hcwdcs'
+docker_api_args: "--python-autoreload 1"
