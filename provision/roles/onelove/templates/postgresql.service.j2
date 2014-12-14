@@ -10,8 +10,10 @@ ExecStartPre=-/bin/mkdir -p /var/lib/docker/volumes/postgresql
 ExecStartPre=-/usr/bin/docker kill postgresql
 ExecStartPre=-/usr/bin/docker rm postgresql
 ExecStartPre=/usr/bin/docker pull paintedfox/postgresql:latest
-ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data --dns 172.17.42.1 --rm --volumes-from consul-template --name postgresql paintedfox/postgresql
+ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data {{ onelove_docker_default_arguments }} --name postgresql paintedfox/postgresql
 ExecStop=/usr/bin/docker stop postgresql
 
+{% if onelove_enable_service == "yes" %}
 [Install]
 WantedBy=multi-user.target
+{% endif %}
