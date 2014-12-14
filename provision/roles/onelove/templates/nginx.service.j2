@@ -9,7 +9,7 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill nginx
 ExecStartPre=-/usr/bin/docker rm nginx
 ExecStartPre=/usr/bin/docker pull onelove/nginx
-ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 --name nginx {{ onelove_docker_default_arguments }} --volumes-from api onelove/nginx
+ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 --name nginx {{ onelove_docker_default_arguments }} onelove/nginx
 ExecStop=/usr/bin/docker stop nginx
 
 {% if onelove_enable_service == "yes" %}
