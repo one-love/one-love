@@ -48,5 +48,5 @@
   with_items: onelove_services
   service:
     name: "{{ item.name }}"
-    enabled: yes
+    enabled: "{{ onelove_enable_service }}"
     state: started

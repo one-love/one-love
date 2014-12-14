@@ -9,8 +9,11 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill nginx
 ExecStartPre=-/usr/bin/docker rm nginx
 ExecStartPre=/usr/bin/docker pull onelove/nginx
-ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 --volumes-from api --dns 172.17.42.1 --name nginx --rm --volumes-from consul-template onelove/nginx
+ExecStart=/usr/bin/docker run -p 80:80 -p 443:443 --name nginx {{ onelove_docker_default_arguments }} --volumes-from api onelove/nginx
 ExecStop=/usr/bin/docker stop nginx
 
+{% if inside_vagrant is defined %}
+{% else %}
 [Install]
 WantedBy=multi-user.target
+{% endif %}
