@@ -13,8 +13,7 @@ ExecStartPre=/usr/bin/docker pull paintedfox/postgresql:latest
 ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data {{ onelove_docker_default_arguments }} --name postgresql paintedfox/postgresql
 ExecStop=/usr/bin/docker stop postgresql
 
-{% if inside_vagrant is defined %}
-{% else %}
+{% if onelove_enable_service == "yes" %}
 [Install]
 WantedBy=multi-user.target
 {% endif %}

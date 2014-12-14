@@ -2,5 +2,4 @@
 db_password: 'jaMXoXrEeYwCfNM0KGlUk2OHXDfpQMqK5yNt4C5EsIpI3bLi5FCcPJ9gp2hcwdcs'
 api_after: "postgresql"
 nginx_after: "api"
-inside_vagrant: "yes"
 onelove_enable_service: "no"
