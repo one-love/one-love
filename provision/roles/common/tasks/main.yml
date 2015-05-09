@@ -1,8 +1,10 @@
 ---
+- include: docker.yml
+
 - name: install docker
   sudo: yes
   apt:
-    name: docker.io
+    name: lxc-docker
     state: latest
 
 - name: start docker
