@@ -1,0 +1,16 @@
+---
+- name: add experimental repo
+  sudo: yes
+  template:
+    src: sid.list.j2
+    dest: /etc/apt/sources.list.d/sid.list
+    owner: root
+    group: root
+
+- name: pin docker.io
+  sudo: yes
+  template:
+    src: docker-preferences.j2
+    dest: /etc/apt/preferences.d/docker
+    owner: root
+    group: root

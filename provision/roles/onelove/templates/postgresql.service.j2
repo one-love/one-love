@@ -9,8 +9,8 @@ TimeoutStartSec=0
 ExecStartPre=-/bin/mkdir -p /var/lib/docker/volumes/postgresql
 ExecStartPre=-/usr/bin/docker kill postgresql
 ExecStartPre=-/usr/bin/docker rm postgresql
-ExecStartPre=/usr/bin/docker pull paintedfox/postgresql:latest
-ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -e DB=onelove -e PASS={{ db_password }} -v /var/lib/docker/volumes/postgresql:/data {{ onelove_docker_default_arguments }} --name postgresql paintedfox/postgresql
+ExecStartPre=/usr/bin/docker pull postgres:latest
+ExecStart=/usr/bin/docker run -P -e SERVICE_TAGS=master -v /var/lib/docker/volumes/postgresql:/data {{ onelove_docker_default_arguments }} --name postgresql postgres
 ExecStop=/usr/bin/docker stop postgresql
 
 {% if onelove_enable_service == "yes" %}

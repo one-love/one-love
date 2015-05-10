@@ -2,7 +2,6 @@
 common_services:
   - name: consul
   - name: registrator
-  - name: consul-template
 
 common_packages:
   - name: curl
