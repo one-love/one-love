@@ -1,0 +1,8 @@
+---
+vagrant_repos:
+  - name: api
+    url: https://github.com/one-love/api
+  - name: frontend
+    url: https://github.com/one-love/web-client
+  - name: nginx
+    url: https://github.com/one-love/docker-nginx

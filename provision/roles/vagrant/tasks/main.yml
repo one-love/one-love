@@ -1,0 +1,8 @@
+---
+- name: clone one love repos
+  with_items: vagrant_repos
+  git:
+    repo: "{{ item.url }}"
+    dest: /vagrant/projects/{{ item.name }}
+    accept_hostkey: yes
+    update: no

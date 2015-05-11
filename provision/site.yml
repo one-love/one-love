@@ -5,3 +5,8 @@
     - include: roles/docker/pre_tasks/main.yml
   roles:
     - onelove
+
+- name: One Love project provisioning
+  hosts: vagrant
+  roles:
+    - vagrant
