@@ -3,3 +3,4 @@ log/
 user-data
 projects/
 .ropeproject/
+*.pyc
