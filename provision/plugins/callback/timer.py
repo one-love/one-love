@@ -1,6 +1,4 @@
-import os
-import datetime
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 class CallbackModule(object):
@@ -8,20 +6,21 @@ class CallbackModule(object):
     This callback module tells you how long your plays ran for.
     """
 
-    start_time = datetime.now()
-    
     def __init__(self):
-        start_time = datetime.now()
+        self.start_time = datetime.now()
         print "Timer plugin is active."
 
     def days_hours_minutes_seconds(self, timedelta):
-        minutes = (timedelta.seconds//60)%60
-        r_seconds = timedelta.seconds - (minutes * 60)
-        return timedelta.days, timedelta.seconds//3600, minutes, r_seconds
+        self.minutes = (timedelta.seconds // 60) % 60
+        self.r_seconds = timedelta.seconds - (self.minutes * 60)
+        return \
+            timedelta.days, \
+            timedelta.seconds // 3600, \
+            self.minutes, \
+            self.r_seconds
 
     def playbook_on_stats(self, stats):
-        end_time = datetime.now()
-        timedelta = end_time - self.start_time
-        print "Playbook run took %s days, %s hours, %s minutes, %s seconds" % (self.days_hours_minutes_seconds(timedelta))
-
-
+        self.end_time = datetime.now()
+        self.timedelta = self.end_time - self.start_time
+        print "Playbook run took %s days, %s hours, %s minutes, %s seconds" % \
+            (self.days_hours_minutes_seconds(self.timedelta))
