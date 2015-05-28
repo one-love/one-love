@@ -24,6 +24,11 @@
     enabled: "{{ onelove_enable_service }}"
     state: started
 
+- name: wait for postgresql to become available
+  wait_for:
+    delay: 3
+    path: /bin/bash
+
 - name: register postgresql address
   command: service-helper.sh postgres?tag=master Address
   register: postgresql_address
