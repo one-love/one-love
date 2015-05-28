@@ -1,9 +1,9 @@
 ---
-- name: add onelove service
+- name: add nginx service
   sudo: yes
   template:
-    src: onelove.service.j2
-    dest: /lib/systemd/system/onelove.service
+    src: nginx.service.j2
+    dest: /lib/systemd/system/nginx.service
     owner: root
     group: root
 
@@ -11,9 +11,9 @@
   sudo: yes
   command: systemctl daemon-reload
 
-- name: start onelove service
+- name: start nginx service
   sudo: yes
   service:
-    name: onelove
+    name: nginx
     enabled: "{{ onelove_enable_service }}"
     state: started

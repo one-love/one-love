@@ -17,34 +17,6 @@
     enabled: yes
     state: started
 
-- name: get consul-template tarball
-  get_url:
-    url: https://github.com/hashicorp/consul-template/releases/download/v0.9.0/consul-template_0.9.0_linux_amd64.tar.gz
-    dest: /tmp/consul-template.tar.gz
-    sha256sum: 3d8c9fcaee18a4369cc731528ce9d6a5be03d88b954a2fea0f4406fc54c70fc8
-
-- name: unpack consul-template
-  unarchive:
-    src: /tmp/consul-template.tar.gz
-    dest: /tmp/
-    copy: no
-    creates: /tmp/consul-template_0.9.0_linux_amd64
-
-- name: create consul-template volume
-  sudo: yes
-  file:
-    path: /var/lib/docker/volumes/consul-template
-    owner: root
-    group: root
-    state: directory
-
-- name: move consul-template binary
-  sudo: yes
-  command: mv /tmp/consul-template_0.9.0_linux_amd64/consul-template /var/lib/docker/volumes/consul-template
-  args:
-    chdir:
-    creates: /var/lib/docker/volumes/consul-template/consul-template
-
 - name: add common services
   sudo: yes
   with_items: common_services
@@ -72,3 +44,12 @@
   apt:
     pkg: "{{ item.name }}"
     state: latest
+
+- name: copy service helper
+  sudo: yes
+  copy:
+    src: service-helper.sh
+    dest: /bin/service-helper.sh
+    owner: root
+    group: root
+    mode: 0755

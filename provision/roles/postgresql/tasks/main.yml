@@ -1,0 +1,57 @@
+---
+- name: install psycopg2
+  sudo: yes
+  apt:
+    pkg: python-psycopg2
+    state: latest
+
+- name: add postgresql service
+  sudo: yes
+  template:
+    src: postgresql.service.j2
+    dest: /lib/systemd/system/postgresql.service
+    owner: root
+    group: root
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
+
+- name: start postgresql service
+  sudo: yes
+  service:
+    name: postgresql
+    enabled: "{{ onelove_enable_service }}"
+    state: started
+
+- name: register postgresql address
+  command: service-helper.sh postgres?tag=master Address
+  register: postgresql_address
+
+- name: register postgresql port
+  command: service-helper.sh postgres?tag=master ServicePort
+  register: postgresql_port
+
+- name: wait for postgresql to become available
+  wait_for:
+    host: "{{ postgresql_address.stdout }}"
+    port: "{{ postgresql_port.stdout }}"
+
+- name: create onelove user
+  postgresql_user:
+    name: onelove
+    password: "{{ db_password }}"
+    login_host: "{{ postgresql_address.stdout }}"
+    port: "{{ postgresql_port.stdout }}"
+    login_password: "{{ db_password }}"
+
+- name: create onelove db
+  sudo: yes
+  postgresql_db:
+    name: onelove
+    encoding: 'UTF-8'
+    template: 'template0'
+    login_host: "{{ postgresql_address.stdout }}"
+    port: "{{ postgresql_port.stdout }}"
+    login_password: "{{ db_password }}"
+    owner: onelove

@@ -4,7 +4,10 @@
     - include: roles/common/pre_tasks/main.yml
     - include: roles/docker/pre_tasks/main.yml
   roles:
+    - common
+    - postgresql
     - onelove
+    - nginx
 
 - name: One Love project provisioning
   hosts: vagrant
