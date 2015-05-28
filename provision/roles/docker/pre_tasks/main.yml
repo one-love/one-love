@@ -1,9 +1,9 @@
 ---
-- name: add experimental repo
+- name: add unstable repo
   sudo: yes
   template:
-    src: sid.list.j2
-    dest: /etc/apt/sources.list.d/sid.list
+    src: stretch.list.j2
+    dest: /etc/apt/sources.list.d/stretch.list
     owner: root
     group: root
 
