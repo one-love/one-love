@@ -1,6 +1,6 @@
 ---
 - name: set password
-  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{db_password}}"
+  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
 
 - name: copy cert
   copy:
@@ -35,7 +35,7 @@
   with_items: onelove_services
   template:
     src: "{{ item.name }}.service.j2"
-    dest: "/lib/systemd/system/{{item.name}}.service"
+    dest: "/lib/systemd/system/{{ item.name }}.service"
     owner: root
     group: root
 
