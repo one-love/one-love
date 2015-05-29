@@ -15,5 +15,5 @@
   sudo: yes
   service:
     name: nginx
-    enabled: "{{ onelove_enable_service }}"
+    enabled: yes
     state: started
