@@ -4,3 +4,12 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
+
+- name: add jessie-backports
+  sudo: yes
+  template:
+    src: jessie-backports.list.j2
+    dest: /etc/apt/sources.list.d/jessie-backports.list
+    owner: root
+    group: root
+
