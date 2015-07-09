@@ -2,7 +2,6 @@
   hosts: all
   pre_tasks:
     - include: roles/common/pre_tasks/main.yml
-    - include: roles/docker/pre_tasks/main.yml
   roles:
     - common
 
@@ -14,6 +13,6 @@
 - name: One Love project provisioning
   hosts: all
   roles:
-    - postgresql
+    - mongodb
     - onelove
     - nginx

@@ -44,12 +44,3 @@
   apt:
     pkg: "{{ item.name }}"
     state: latest
-
-- name: copy service helper
-  sudo: yes
-  copy:
-    src: service-helper.sh
-    dest: /bin/service-helper.sh
-    owner: root
-    group: root
-    mode: 0755
