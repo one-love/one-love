@@ -6,6 +6,8 @@
     dest: /lib/systemd/system/onelove.service
     owner: root
     group: root
+  notify:
+    - restart onelove
 
 - name: reload systemd
   sudo: yes
