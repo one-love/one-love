@@ -39,4 +39,5 @@ class CallbackModule(object):
         self.tasks.append({'name': name})
 
     def playbook_on_stats(self, stats):
-        print(json.dumps(self.tasks, indent=4))
+        # print(json.dumps(self.tasks, indent=4))
+        pass
