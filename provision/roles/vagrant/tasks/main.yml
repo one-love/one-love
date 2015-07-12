@@ -37,3 +37,12 @@
     dest: /vagrant/projects/{{ item.name }}
     accept_hostkey: yes
     update: no
+
+- name: put api project in path
+  sudo: yes
+  copy:
+    src: api-path.sh
+    dest: /etc/profile.d/api-path.sh
+    owner: root
+    group: root
+    mode: 0644

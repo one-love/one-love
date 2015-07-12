@@ -14,5 +14,6 @@
   hosts: all
   roles:
     - mongodb
+    - rabbitmq
     - onelove
     - nginx

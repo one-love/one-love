@@ -1,0 +1,21 @@
+---
+- name: add rabbitmq service
+  sudo: yes
+  template:
+    src: rabbitmq.service.j2
+    dest: /lib/systemd/system/rabbitmq.service
+    owner: root
+    group: root
+  notify:
+    - restart rabbitmq
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
+
+- name: start rabbitmq service
+  sudo: yes
+  service:
+    name: rabbitmq
+    enabled: yes
+    state: started
