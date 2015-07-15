@@ -30,6 +30,10 @@
     path: /tmp/key
     state: absent
 
+- name: set secret key
+  sudo: yes
+  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/onelove/secret_key -d {{ onelove_secret_key }}"
+
 - name: clone one love repos
   with_items: vagrant_repos
   git:
