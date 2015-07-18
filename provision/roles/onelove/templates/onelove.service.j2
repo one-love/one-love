@@ -9,7 +9,7 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill onelove
 ExecStartPre=-/usr/bin/docker rm onelove
 ExecStartPre=/usr/bin/docker pull onelove/api
-ExecStart=/usr/bin/docker run -P --name onelove {{ onelove_docker_default_arguments }} --link mongodb:mongodb --link rabbitmq:rabbitmq onelove/api
+ExecStart=/usr/bin/docker run -p 9000 --name onelove {{ onelove_docker_default_arguments }} --link mongodb:mongodb --link rabbitmq:rabbitmq onelove/api
 ExecStop=/usr/bin/docker stop onelove
 
 [Install]
