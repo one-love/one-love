@@ -6,6 +6,8 @@
     dest: /lib/systemd/system/nginx.service
     owner: root
     group: root
+  notify:
+    - restart nginx
 
 - name: reload systemd
   sudo: yes

@@ -6,6 +6,8 @@
     dest: /lib/systemd/system/mongodb.service
     owner: root
     group: root
+  notify:
+    - restart mongodb
 
 - name: reload systemd
   sudo: yes
