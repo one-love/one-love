@@ -10,7 +10,7 @@ ExecStartPre=-/bin/mkdir -p /var/lib/docker/volumes/rabbitmq
 ExecStartPre=-/usr/bin/docker kill rabbitmq
 ExecStartPre=-/usr/bin/docker rm rabbitmq
 ExecStartPre=/usr/bin/docker pull rabbitmq:management
-ExecStart=/usr/bin/docker run -P -v /var/lib/docker/volumes/rabbitmq:/var/lib/rabbitmq {{ onelove_docker_default_arguments }} --name rabbitmq rabbitmq:latest
+ExecStart=/usr/bin/docker run -P -v /var/lib/docker/volumes/rabbitmq:/var/lib/rabbitmq {{ onelove_docker_default_arguments }} --name rabbitmq rabbitmq:management
 ExecStop=/usr/bin/docker stop rabbitmq
 
 [Install]
