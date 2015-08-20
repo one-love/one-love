@@ -2,3 +2,4 @@
 db_password: 'jaMXoXrEeYwCfNM0KGlUk2OHXDfpQMqK5yNt4C5EsIpI3bLi5FCcPJ9gp2hcwdcs'
 onelove_docker_default_arguments: "--dns 172.17.42.1 --rm"
 onelove_secret_key: "tX8oLQSkI4wZ97WObbW7khDmGv4jiNpnZVxhl4Rjlw4peSwdfmFoGh6aaGvPeXWs"
+address: "{{ ansible_eth1.ipv4.address }}"

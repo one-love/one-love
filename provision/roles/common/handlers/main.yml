@@ -1,0 +1,12 @@
+---
+- name: restart consul
+  sudo: yes
+  service:
+    name: consul
+    state: restarted
+
+- name: restart registrator
+  sudo: yes
+  service:
+    name: registrator
+    state: restarted
