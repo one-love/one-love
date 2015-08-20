@@ -9,7 +9,7 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill registrator
 ExecStartPre=-/usr/bin/docker rm registrator
 ExecStartPre=/usr/bin/docker pull gliderlabs/registrator:latest
-ExecStart=/usr/bin/docker run -v /var/run/docker.sock:/tmp/docker.sock --rm --name registrator gliderlabs/registrator:latest consul://172.17.42.1:8500
+ExecStart=/usr/bin/docker run -v /var/run/docker.sock:/tmp/docker.sock --rm --name registrator gliderlabs/registrator:latest -ip {{ address }} consul://172.17.42.1:8500
 ExecStop=/usr/bin/docker stop registrator
 
 [Install]

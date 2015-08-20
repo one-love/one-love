@@ -25,6 +25,9 @@
     dest: "/lib/systemd/system/{{ item.name }}.service"
     owner: root
     group: root
+  notify:
+    - restart consul
+    - restart registrator
 
 - name: reload systemd
   sudo: yes
