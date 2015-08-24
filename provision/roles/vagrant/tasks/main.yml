@@ -1,39 +1,4 @@
 ---
-- name: set password
-  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
-
-- name: copy cert
-  copy:
-    src: onelove.crt
-    dest: /tmp/cert
-    mode: 0644
-
-- name: set cert
-  command: curl -X PUT http://172.17.42.1:8500/v1/kv/loadbalancer/crt --data-binary @/tmp/cert
-
-- name: remove cert from file system
-  file:
-    path: /tmp/cert
-    state: absent
-
-- name: copy key
-  copy:
-    src: onelove.key
-    dest: /tmp/key
-    mode: 0644
-
-- name: set key
-  command: curl -X PUT http://172.17.42.1:8500/v1/kv/loadbalancer/key --data-binary @/tmp/key
-
-- name: remove key from file system
-  file:
-    path: /tmp/key
-    state: absent
-
-- name: set secret key
-  sudo: yes
-  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/onelove/secret_key -d {{ onelove_secret_key }}"
-
 - name: clone one love repos
   with_items: vagrant_repos
   git:
@@ -50,3 +15,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: configure backend from consul
+  sudo: yes
+  command: "docker run -it --rm -v /vagrant/projects/api:/usr/src/app onelove/api:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
+
+- name: create default admin
+  sudo: yes
+  command: "docker run -it --rm -v /vagrant/projects/api:/usr/src/app --link mongodb:mongodb onelove/api:latest ./create_default_admin.py"

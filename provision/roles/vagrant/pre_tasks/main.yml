@@ -1,0 +1,35 @@
+---
+- name: set password
+  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
+
+- name: copy cert
+  copy:
+    src: onelove.crt
+    dest: /tmp/cert
+    mode: 0644
+
+- name: set cert
+  command: curl -X PUT http://172.17.42.1:8500/v1/kv/loadbalancer/crt --data-binary @/tmp/cert
+
+- name: remove cert from file system
+  file:
+    path: /tmp/cert
+    state: absent
+
+- name: copy key
+  copy:
+    src: onelove.key
+    dest: /tmp/key
+    mode: 0644
+
+- name: set key
+  command: curl -X PUT http://172.17.42.1:8500/v1/kv/loadbalancer/key --data-binary @/tmp/key
+
+- name: remove key from file system
+  file:
+    path: /tmp/key
+    state: absent
+
+- name: set secret key
+  sudo: yes
+  command: "curl -X PUT http://172.17.42.1:8500/v1/kv/onelove/secret_key -d {{ onelove_secret_key }}"
