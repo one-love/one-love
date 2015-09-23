@@ -1,4 +1,8 @@
 ---
+vagrant_packages:
+  - name: python-pip
+  - name: python-dev
+
 vagrant_repos:
   - name: backend
     url: https://github.com/one-love/backend
