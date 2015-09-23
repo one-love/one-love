@@ -7,19 +7,31 @@
     accept_hostkey: yes
     update: no
 
-- name: put api project in path
+- name: put backend project in path
   sudo: yes
   copy:
-    src: api-path.sh
-    dest: /etc/profile.d/api-path.sh
+    src: backend-path.sh
+    dest: /etc/profile.d/backend-path.sh
     owner: root
     group: root
     mode: 0644
 
-- name: configure backend from consul
+- name: configure backend
   sudo: yes
   command: "docker run -it --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
 
 - name: create default admin
   sudo: yes
   command: "docker run -it --rm -v /vagrant/projects/backend:/usr/src/app --link mongodb:mongodb onelove/backend:latest ./create_default_admin.py"
+
+- name: install packages
+  sudo: yes
+  with_items: vagrant_packages
+  apt:
+    pkg: "{{ item.name }}"
+    state: latest
+
+- name: install requirements
+  sudo: yes
+  pip:
+    requirements: /vagrant/projects/backend/requirements_dev.txt
