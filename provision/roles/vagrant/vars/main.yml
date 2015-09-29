@@ -2,6 +2,7 @@
 vagrant_packages:
   - name: python-pip
   - name: python-dev
+  - name: tmux
 
 vagrant_repos:
   - name: backend

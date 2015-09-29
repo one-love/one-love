@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PATH="${PATH}:/vagrant/projects/api/bin"
+PATH="${PATH}:/vagrant/projects/backend/bin"
