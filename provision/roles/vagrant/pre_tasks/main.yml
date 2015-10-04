@@ -4,7 +4,7 @@
 
 - name: copy cert
   copy:
-    src: onelove.crt
+    src: roles/vagrant/files/onelove.crt
     dest: /tmp/cert
     mode: 0644
 
@@ -18,7 +18,7 @@
 
 - name: copy key
   copy:
-    src: onelove.key
+    src: roles/vagrant/files/onelove.key
     dest: /tmp/key
     mode: 0644
 
