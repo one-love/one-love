@@ -15,8 +15,8 @@ configured VirtualBox VM instance.
 
 ssh into vagrant machine and start the server:
 
-  $ vagrant ssh onelove
-  $ cd /vagrant/projects/backend
-  $ ./manage.py runserver
+    $ vagrant ssh onelove
+    $ cd /vagrant/projects/backend
+    $ ./manage.py runserver
 
 Point your browser to [Vagrant VM](http://192.168.33.33/api/v1). Login with admin@example.com/Sekrit
