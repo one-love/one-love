@@ -10,4 +10,13 @@ One Love
   - To run all VirtualBox instances effortlessly, Vagrant is used to automate VM creation/provisioning/destruction
 
 ### First run
-Clone this repo and `cd` into it. Run `vagrant up`. The process will take a while and should give you fully configured VirtualBox VM instance. Point your browser to [Vagrant VM](http://192.168.33.33/api/v1). Login with admin@example.com/Sekrit
+Clone this repo and `cd` into it. Run `vagrant up`. The process will take a while and should give you fully
+configured VirtualBox VM instance.
+
+ssh into vagrant machine and start the server:
+
+  $ vagrant ssh onelove
+  $ cd /vagrant/projects/backend
+  $ ./manage.py runserver
+
+Point your browser to [Vagrant VM](http://192.168.33.33/api/v1). Login with admin@example.com/Sekrit
