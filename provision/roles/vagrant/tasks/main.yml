@@ -18,11 +18,11 @@
 
 - name: configure backend
   sudo: yes
-  command: "docker run -it --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
 
 - name: create default admin
   sudo: yes
-  command: "docker run -it --rm -v /vagrant/projects/backend:/usr/src/app --link mongodb:mongodb onelove/backend:latest ./create_default_admin.py"
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app --link mongodb:mongodb onelove/backend:latest ./create_default_admin.py"
 
 - name: install packages
   sudo: yes
