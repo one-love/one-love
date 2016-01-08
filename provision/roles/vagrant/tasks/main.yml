@@ -35,3 +35,21 @@
   sudo: yes
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
+
+- name: install nodejs legacy
+  sudo: yes
+  apt:
+    pkg: nodejs-legacy
+    state: latest
+
+- name: get npm binary
+  get_url:
+    url: https://www.npmjs.org/install.sh
+    validate_certs: no
+    dest: /tmp/npm-install.sh
+
+- name: install npm
+  sudo: yes
+  command: bash /tmp/npm-install.sh
+  args:
+    creates: /usr/bin/npm

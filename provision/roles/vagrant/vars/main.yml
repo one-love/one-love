@@ -1,7 +1,5 @@
 ---
 vagrant_packages:
-  - name: nodejs-legacy
-  - name: npm
   - name: python-pip
   - name: python-dev
   - name: tmux
