@@ -36,12 +36,6 @@
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
 
-- name: install nodejs legacy
-  sudo: yes
-  apt:
-    pkg: nodejs-legacy
-    state: latest
-
 - name: get npm binary
   get_url:
     url: https://www.npmjs.org/install.sh
