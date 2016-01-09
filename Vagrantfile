@@ -16,8 +16,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         onelove.vm.box_url = "https://github.com/one-love/vagrant-base-box/releases/download/v0.1-alpha/debian-8.2-x86_64.box"
         onelove.vm.network :private_network, ip: "192.168.33.33"
         onelove.vm.hostname = "onelove.vagrant"
-        onelove.vm.provision :ansible, run: "always" do |ansible|
+        onelove.vm.provision :ansible do |ansible|
             ansible.playbook = "provision/site.yml"
+            ansible.host_key_checking = false
+            ansible.groups = {
+                "vagrant" => ["onelove"],
+            }
+            ansible.verbose = "vv"
+        end
+        onelove.vm.provision :ansible, run: "always" do |ansible|
+            ansible.playbook = "provision/vagrant-pre.yml"
             ansible.host_key_checking = false
             ansible.groups = {
                 "vagrant" => ["onelove"],

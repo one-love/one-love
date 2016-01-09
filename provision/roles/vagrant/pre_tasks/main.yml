@@ -1,4 +1,10 @@
 ---
+- name: wait for consul
+  wait_for:
+    host: 172.17.42.1
+    port: 8500
+    delay: 2
+
 - name: set password
   command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
 
