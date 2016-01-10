@@ -32,5 +32,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             }
             ansible.verbose = "vv"
         end
+        onelove.vm.provision :ansible, run: "always" do |ansible|
+            ansible.playbook = "provision/vagrant-post.yml"
+            ansible.host_key_checking = false
+            ansible.groups = {
+                "vagrant" => ["onelove"],
+            }
+            ansible.verbose = "vv"
+        end
     end
 end
