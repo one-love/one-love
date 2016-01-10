@@ -7,11 +7,11 @@
     accept_hostkey: yes
     update: no
 
-- name: put backend project in path
+- name: put project in path
   sudo: yes
   copy:
-    src: backend-path.sh
-    dest: /etc/profile.d/backend-path.sh
+    src: project-path.sh
+    dest: /etc/profile.d/project-path.sh
     owner: root
     group: root
     mode: 0644
