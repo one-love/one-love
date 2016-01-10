@@ -4,3 +4,4 @@ user-data
 projects/
 .ropeproject/
 *.pyc
+.Trash-*/
