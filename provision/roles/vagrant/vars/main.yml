@@ -1,5 +1,6 @@
 ---
 vagrant_packages:
+  - name: nodejs
   - name: python-pip
   - name: python-dev
   - name: tmux
@@ -11,3 +12,7 @@ vagrant_repos:
     url: https://github.com/one-love/web-client
   - name: nginx
     url: https://github.com/one-love/docker-nginx
+
+vagrant_apt_repos:
+  - name: nodejs
+    key: https://deb.nodesource.com/gpgkey/nodesource.gpg.key

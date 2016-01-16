@@ -17,5 +17,5 @@
   sudo: yes
   service:
     name: onelove
-    enabled: yes
-    state: started
+    enabled: "{{ onelove_enabled }}"
+    state: "{{ onelove_state }}"

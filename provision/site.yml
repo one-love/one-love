@@ -1,18 +1,10 @@
+---
 - name: One Love project provisioning
   hosts: all
   pre_tasks:
     - include: roles/common/pre_tasks/main.yml
   roles:
     - common
-
-- name: One Love project provisioning
-  hosts: vagrant
-  pre_tasks:
-    - include: roles/vagrant/pre_tasks/main.yml
-
-- name: One Love project provisioning
-  hosts: all
-  roles:
     - mongodb
     - rabbitmq
     - onelove
@@ -20,5 +12,7 @@
 
 - name: One Love project provisioning
   hosts: vagrant
+  pre_tasks:
+    - include: roles/vagrant/pre_tasks/main.yml
   roles:
     - vagrant
