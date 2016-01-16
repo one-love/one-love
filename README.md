@@ -17,5 +17,5 @@ you fully configured VirtualBox VM instance.
     $ vagrant ssh onelove
     $ dev.sh
 
-Point your browser to [Vagrant VM](http://localhost:8080/webpack-dev-server/).
+Point your browser to [Vagrant VM](http://onelove.vagrant:8080/webpack-dev-server/).
 Login with admin@example.com/Sekrit
