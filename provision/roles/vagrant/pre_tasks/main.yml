@@ -39,3 +39,7 @@
 - name: set secret key
   sudo: yes
   command: "curl -X PUT http://172.17.42.1:8500/v1/kv/onelove/secret_key -d {{ onelove_secret_key }}"
+
+- name: configure backend
+  sudo: yes
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"

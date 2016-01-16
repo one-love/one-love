@@ -1,4 +1,25 @@
 ---
+- name: install repo
+  sudo: yes
+  with_items: vagrant_apt_repos
+  template:
+    src: "{{ item.name }}.list.j2"
+    dest: "/etc/apt/sources.list.d/{{ item.name }}.list"
+    owner: root
+    group: root
+
+- name: install repo keys
+  sudo: yes
+  with_items: vagrant_apt_repos
+  apt_key:
+    url: "{{ item.key }}"
+    state: present
+
+- name: update apt
+  sudo: yes
+  apt:
+    update_cache: yes
+
 - name: clone one love repos
   with_items: vagrant_repos
   git:
@@ -15,10 +36,6 @@
     owner: root
     group: root
     mode: 0644
-
-- name: configure backend
-  sudo: yes
-  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
 
 - name: create default admin
   sudo: yes
@@ -43,4 +60,3 @@
 - name: install npm
   sudo: yes
   shell: npm install -g npm
-  when: npm_version.stdout.find('1.4.') != -1

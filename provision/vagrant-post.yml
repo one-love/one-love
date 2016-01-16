@@ -1,5 +1,0 @@
----
-- name: One Love project provisioning
-  hosts: vagrant
-  roles:
-    - vagrant_post
