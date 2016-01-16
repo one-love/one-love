@@ -5,6 +5,12 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- name: install apt-transport-https
+  sudo: yes
+  apt:
+    pkg: apt-transport-https
+    state: latest
+
 - name: add jessie-backports
   sudo: yes
   template:
@@ -12,4 +18,3 @@
     dest: /etc/apt/sources.list.d/jessie-backports.list
     owner: root
     group: root
-
