@@ -16,7 +16,7 @@ configured VirtualBox VM instance.
 ssh into vagrant machine and start the server:
 
     $ vagrant ssh onelove
-    $ cd /vagrant/projects/backend
-    $ ./manage.py runserver
+    $ vagrant plugin install vagrant-hostsupdater
+    $ dev.sh
 
-Point your browser to [Vagrant VM](http://192.168.33.33/api/v1). Login with admin@example.com/Sekrit
+Point your browser to [Vagrant VM](http://onelove.vagrant:5000/). Login with admin@example.com/Sekrit
