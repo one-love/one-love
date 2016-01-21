@@ -60,3 +60,10 @@
 - name: install npm
   sudo: yes
   shell: npm install -g npm
+
+- name: install node modules
+  sudo: yes
+  shell: npm install
+  args:
+    chdir: /vagrant/projects/frontend
+    creates: /vagrant/projects/frontend/node_modules
