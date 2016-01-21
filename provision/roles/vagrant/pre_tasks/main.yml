@@ -1,4 +1,10 @@
 ---
+- name: start mongodb
+  sudo: yes
+  service:
+    name: mongodb
+    state: started
+
 - name: wait for consul
   wait_for:
     host: 172.17.42.1
