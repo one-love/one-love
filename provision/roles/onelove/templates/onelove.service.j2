@@ -6,6 +6,7 @@ Wants=network.target
 
 [Service]
 TimeoutStartSec=0
+Environment='FLASK_CONFIG={{ onelove_config }}'
 ExecStartPre=-/usr/bin/docker kill onelove
 ExecStartPre=-/usr/bin/docker rm onelove
 ExecStartPre=/usr/bin/docker pull onelove/backend

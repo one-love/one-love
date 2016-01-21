@@ -5,3 +5,4 @@ onelove_docker_default_arguments: "--dns 172.17.42.1 --rm"
 onelove_enabled: no
 onelove_secret_key: "tX8oLQSkI4wZ97WObbW7khDmGv4jiNpnZVxhl4Rjlw4peSwdfmFoGh6aaGvPeXWs"
 onelove_state: stopped
+onelove_config: 'dev'
