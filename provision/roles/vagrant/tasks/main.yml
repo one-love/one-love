@@ -63,3 +63,11 @@
   args:
     chdir: /vagrant/projects/frontend
     creates: /vagrant/projects/frontend/node_modules
+
+- name: configure backend
+  sudo: yes
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
+
+- name: create default admin
+  sudo: yes
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest /usr/src/app/create_default_admin.py"
