@@ -1,15 +1,9 @@
 ---
-- name: start mongodb
+- name: start consul
   sudo: yes
   service:
-    name: mongodb
+    name: consul
     state: started
-
-- name: wait for consul
-  wait_for:
-    host: 172.17.42.1
-    port: 8500
-    delay: 2
 
 - name: set password
   command: "curl -X PUT http://172.17.42.1:8500/v1/kv/password -d {{ db_password }}"
@@ -45,6 +39,12 @@
 - name: set secret key
   sudo: yes
   command: "curl -X PUT http://172.17.42.1:8500/v1/kv/onelove/secret_key -d {{ onelove_secret_key }}"
+
+- name: start mongodb
+  sudo: yes
+  service:
+    name: mongodb
+    state: started
 
 - name: configure backend
   sudo: yes
