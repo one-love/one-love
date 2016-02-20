@@ -49,10 +49,6 @@
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
 
-- name: get npm version
-  shell: npm --version
-  register: npm_version
-
 - name: install npm
   sudo: yes
   shell: npm install -g npm
