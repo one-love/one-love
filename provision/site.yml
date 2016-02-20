@@ -12,7 +12,5 @@
 
 - name: One Love project provisioning
   hosts: vagrant
-  pre_tasks:
-    - include: roles/vagrant/pre_tasks/main.yml
   roles:
     - vagrant

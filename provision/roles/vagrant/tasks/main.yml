@@ -37,10 +37,6 @@
     group: root
     mode: 0644
 
-- name: create default admin
-  sudo: yes
-  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app --link mongodb:mongodb onelove/backend:latest ./create_default_admin.py"
-
 - name: install packages
   sudo: yes
   with_items: vagrant_packages
