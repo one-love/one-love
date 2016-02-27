@@ -1,6 +1,6 @@
 ---
 - name: add rabbitmq service
-  sudo: yes
+  become: yes
   template:
     src: rabbitmq.service.j2
     dest: /lib/systemd/system/rabbitmq.service
@@ -10,11 +10,11 @@
     - restart rabbitmq
 
 - name: reload systemd
-  sudo: yes
+  become: yes
   command: systemctl daemon-reload
 
 - name: start rabbitmq service
-  sudo: yes
+  become: yes
   service:
     name: rabbitmq
     enabled: yes

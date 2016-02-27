@@ -1,6 +1,6 @@
 ---
 - name: add onelove service
-  sudo: yes
+  become: yes
   template:
     src: onelove.service.j2
     dest: /lib/systemd/system/onelove.service
@@ -10,11 +10,11 @@
     - restart onelove
 
 - name: reload systemd
-  sudo: yes
+  become: yes
   command: systemctl daemon-reload
 
 - name: start onelove service
-  sudo: yes
+  become: yes
   service:
     name: onelove
     enabled: "{{ onelove_enabled }}"

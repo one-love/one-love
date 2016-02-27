@@ -1,25 +1,25 @@
 ---
 - name: update apt
-  sudo: yes
+  become: yes
   apt:
     update_cache: yes
 
 - name: install docker
-  sudo: yes
+  become: yes
   apt:
     name: docker.io
     state: latest
 
 - name: start docker
-  sudo: yes
+  become: yes
   service:
     name: docker
     enabled: yes
     state: started
 
 - name: add common services
-  sudo: yes
-  with_items: common_services
+  become: yes
+  with_items: "{{ common_services }}"
   template:
     src: "{{ item.name }}.service.j2"
     dest: "/lib/systemd/system/{{ item.name }}.service"
@@ -30,20 +30,20 @@
     - restart registrator
 
 - name: reload systemd
-  sudo: yes
+  become: yes
   command: systemctl daemon-reload
 
 - name: start common services
-  sudo: yes
-  with_items: common_services
+  become: yes
+  with_items: "{{ common_services }}"
   service:
     name: "{{ item.name }}"
     enabled: yes
     state: started
 
 - name: install common packages
-  sudo: yes
-  with_items: common_packages
+  become: yes
+  with_items: "{{ common_packages }}"
   apt:
     pkg: "{{ item.name }}"
     state: latest

@@ -1,6 +1,6 @@
 ---
 - name: restart onelove
-  sudo: yes
+  become: yes
   service:
     name: onelove
     state: restarted
