@@ -1,18 +1,18 @@
 ---
 - name: update apt
-  sudo: yes
+  become: yes
   apt:
     update_cache: yes
     cache_valid_time: 3600
 
 - name: install apt-transport-https
-  sudo: yes
+  become: yes
   apt:
     pkg: apt-transport-https
     state: latest
 
 - name: add jessie-backports
-  sudo: yes
+  become: yes
   template:
     src: roles/common/templates/jessie-backports.list.j2
     dest: /etc/apt/sources.list.d/jessie-backports.list

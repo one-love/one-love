@@ -1,6 +1,6 @@
 ---
 - name: add mongodb service
-  sudo: yes
+  become: yes
   template:
     src: mongodb.service.j2
     dest: /lib/systemd/system/mongodb.service
@@ -10,11 +10,11 @@
     - restart mongodb
 
 - name: reload systemd
-  sudo: yes
+  become: yes
   command: systemctl daemon-reload
 
 - name: start mongodb service
-  sudo: yes
+  become: yes
   service:
     name: mongodb
     enabled: yes

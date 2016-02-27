@@ -5,3 +5,4 @@ projects/
 .ropeproject/
 *.pyc
 .Trash-*/
+*.retry

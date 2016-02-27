@@ -1,6 +1,6 @@
 ---
 - name: add nginx service
-  sudo: yes
+  become: yes
   template:
     src: nginx.service.j2
     dest: /lib/systemd/system/nginx.service
@@ -10,11 +10,11 @@
     - restart nginx
 
 - name: reload systemd
-  sudo: yes
+  become: yes
   command: systemctl daemon-reload
 
 - name: start nginx service
-  sudo: yes
+  become: yes
   service:
     name: nginx
     enabled: yes

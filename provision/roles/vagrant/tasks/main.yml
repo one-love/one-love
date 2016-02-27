@@ -1,7 +1,7 @@
 ---
 - name: install repo
-  sudo: yes
-  with_items: vagrant_apt_repos
+  become: yes
+  with_items: "{{ vagrant_apt_repos }}"
   template:
     src: "{{ item.name }}.list.j2"
     dest: "/etc/apt/sources.list.d/{{ item.name }}.list"
@@ -9,19 +9,19 @@
     group: root
 
 - name: install repo keys
-  sudo: yes
-  with_items: vagrant_apt_repos
+  become: yes
+  with_items: "{{ vagrant_apt_repos }}"
   apt_key:
     url: "{{ item.key }}"
     state: present
 
 - name: update apt
-  sudo: yes
+  become: yes
   apt:
     update_cache: yes
 
 - name: clone one love repos
-  with_items: vagrant_repos
+  with_items: "{{ vagrant_repos }}"
   git:
     repo: "{{ item.url }}"
     dest: /vagrant/projects/{{ item.name }}
@@ -29,7 +29,7 @@
     update: no
 
 - name: put project in path
-  sudo: yes
+  become: yes
   copy:
     src: project-path.sh
     dest: /etc/profile.d/project-path.sh
@@ -38,32 +38,32 @@
     mode: 0644
 
 - name: install packages
-  sudo: yes
-  with_items: vagrant_packages
+  become: yes
+  with_items: "{{ vagrant_packages }}"
   apt:
     pkg: "{{ item.name }}"
     state: latest
 
 - name: install requirements
-  sudo: yes
+  become: yes
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
 
 - name: install npm
-  sudo: yes
+  become: yes
   shell: npm install -g npm
 
 - name: install node modules
-  sudo: yes
+  become: yes
   shell: npm install
   args:
     chdir: /vagrant/projects/frontend
     creates: /vagrant/projects/frontend/node_modules
 
 - name: configure backend
-  sudo: yes
+  become: yes
   command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
 
 - name: create default admin
-  sudo: yes
+  become: yes
   command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest /usr/src/app/create_default_admin.py"

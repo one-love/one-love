@@ -1,6 +1,6 @@
 ---
 - name: restart mongodb
-  sudo: yes
+  become: yes
   service:
     name: mongodb
     state: restarted
