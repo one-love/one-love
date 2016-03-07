@@ -14,6 +14,7 @@
   apt_key:
     url: "{{ item.key }}"
     state: present
+    validate_certs: no
 
 - name: update apt
   become: yes
@@ -62,7 +63,7 @@
 
 - name: configure backend
   become: yes
-  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove.conf"
+  command: "docker run -i --rm -v /vagrant/projects/backend:/usr/src/app onelove/backend:latest consul-template -once -config /usr/src/app/consul/onelove_dev.conf"
 
 - name: create default admin
   become: yes
