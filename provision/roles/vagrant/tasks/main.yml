@@ -46,20 +46,12 @@
     state: latest
 
 - name: install requirements
-  become: yes
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
 
-- name: install npm
-  become: yes
-  shell: npm install -g npm
-
 - name: install node modules
-  become: yes
-  shell: npm install
-  args:
-    chdir: /vagrant/projects/frontend
-    creates: /vagrant/projects/frontend/node_modules
+  npm:
+    path: /vagrant/projects/frontend
 
 - name: configure backend
   become: yes
