@@ -46,6 +46,7 @@
     state: latest
 
 - name: install requirements
+  become: yes
   pip:
     requirements: /vagrant/projects/backend/requirements_dev.txt
 
