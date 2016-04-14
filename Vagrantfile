@@ -22,7 +22,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.groups = {
                 "vagrant" => ["onelove"],
             }
-            ansible.verbose = "vv"
         end
         onelove.vm.provision :ansible, run: "always" do |ansible|
             ansible.playbook = "provision/vagrant_always.yml"
@@ -30,7 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.groups = {
                 "vagrant" => ["onelove"],
             }
-            ansible.verbose = "vv"
         end
     end
 end
