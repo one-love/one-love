@@ -1,12 +1,6 @@
 ---
 version: '2'
 services:
-  mongodb:
-    image: mongo:latest
-
-  rabbitmq:
-    image: rabbitmq:management
-
   frontend:
     image: onelove/web-client
     volumes:
@@ -14,14 +8,6 @@ services:
     command: ./bin/dev.sh
     ports:
       - "8080:8080"
-
-  celery:
-    image: onelove/backend
-    volumes:
-      - ./projects/backend:/usr/src/app
-    command: ./bin/celery_dev.sh
-    links:
-      - rabbitmq:mq
 
   backend:
     image: onelove/backend
@@ -32,6 +18,17 @@ services:
       - "5000:5000"
     links:
       - mongodb:db
-      - rabbitmq:mq
-    depends_on:
-      - celery
+      - worker:worker
+
+  worker:
+    image: onelove/backend
+    volumes:
+      - ./projects/backend:/usr/src/app
+    command: ./bin/worker_dev.sh
+    ports:
+      - "5555:5555"
+    links:
+      - mongodb:db
+
+  mongodb:
+    image: mongo:latest
