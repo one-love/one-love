@@ -1,3 +1,0 @@
----
-vagrant_always_images:
-  - image: "onelove/backend:latest"
