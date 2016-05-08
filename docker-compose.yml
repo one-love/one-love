@@ -16,19 +16,12 @@ services:
     command: ./bin/dev.sh
     ports:
       - "5000:5000"
-    links:
-      - mongodb:db
-      - worker:worker
 
   worker:
     image: onelove/backend
     volumes:
       - ./projects/backend:/usr/src/app
     command: ./bin/worker_dev.sh
-    ports:
-      - "5555:5555"
-    links:
-      - mongodb:db
     stdin_open: true
     tty: true
 
