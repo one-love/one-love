@@ -1,7 +1,0 @@
----
-common_services:
-  - name: consul
-  - name: registrator
-
-common_packages:
-  - name: curl
