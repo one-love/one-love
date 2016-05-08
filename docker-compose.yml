@@ -29,6 +29,8 @@ services:
       - "5555:5555"
     links:
       - mongodb:db
+    stdin_open: true
+    tty: true
 
   mongodb:
     image: mongo:latest
