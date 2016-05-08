@@ -16,6 +16,8 @@ services:
     command: ./bin/dev.sh
     ports:
       - "5000:5000"
+    links:
+      - mongodb:mongodb
 
   worker:
     image: onelove/backend
