@@ -2,20 +2,18 @@ One Love
 ========
 
 ### Requirements and development setup
-- [VirtualBox](https://www.virtualbox.org/)
-  - All boxes are tested in VirtualBox virtualization platform
-- [Vagrant](http://www.vagrantup.com/)
-  - To run all VirtualBox instances effortlessly, Vagrant is used to automate
-    VM creation/provisioning/destruction
+- [Docker Engine](https://docs.docker.com/engine/installation/)
+  - Every repo uses docker image/container
+- [Docker Compose](https://docs.docker.com/compose/)
+  - To connect containers. Usually `pip install docker-compose` is enough.
 
 ### First run
 Clone this repo and `cd` into it. The process will take a while and should give
 you fully configured VirtualBox VM instance.
 
-    $ vagrant plugin install vagrant-hostsupdater
-    $ vagrant up
-    $ vagrant ssh onelove
-    $ dev.sh
+    $ ./download-repos.sh
+    $ docker-compose up
+    $ docker-compose run --rm backend bin/load_data.sh
 
-Point your browser to [Vagrant VM](http://onelove.vagrant:8080/webpack-dev-server/).
+Point your browser to [Frontend](http://localhost:8080/) or [Backend](http://localhost:5000/).
 Login with admin@example.com/Sekrit
