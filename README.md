@@ -18,3 +18,7 @@ you fully configured VirtualBox VM instance.
 
 Point your browser to [Frontend](http://localhost:8080/) or [Backend](http://localhost:5000/).
 Login with admin@example.com/Sekrit
+
+
+### Project components overview
+![One Love](https://github.com/one-love/one-love/blob/master/onelove.png)
