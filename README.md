@@ -19,3 +19,7 @@ you fully configured VirtualBox VM instance.
 
 Point your browser to [Vagrant VM](http://onelove.vagrant:8080/).
 Login with admin@example.com/Sekrit
+
+
+### Project components overview
+![One Love](https://github.com/one-love/one-love/blob/master/onelove.png)
