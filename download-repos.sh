@@ -1,5 +1,6 @@
 #!/bin/bash
 
-mkdir projects
-git clone https://github.com/one-love/backend projects/backend
-git clone https://github.com/one-love/frontend projects/frontend
+export PROJECT_ROOT=$(dirname $0)
+mkdir "${PROJECT_ROOT}/projects"
+git clone https://github.com/one-love/backend "${PROJECT_ROOT}/projects/backend"
+git clone https://github.com/one-love/frontend "${PROJECT_ROOT}/projects/frontend"
