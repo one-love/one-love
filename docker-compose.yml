@@ -2,7 +2,7 @@
 version: '2'
 services:
   frontend:
-    image: onelove/web-client
+    image: onelove/frontend
     volumes:
       - ./projects/frontend:/usr/src/app
     command: ./bin/dev.sh
