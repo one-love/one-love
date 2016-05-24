@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/one-love/vagrant-one-love.png?label=ready&title=Ready)](https://waffle.io/one-love/vagrant-one-love)
+[![Stories in Ready](https://badge.waffle.io/one-love/one-love.png?label=ready&title=Ready)](https://waffle.io/one-love/one-love)
 One Love
 ========
 
