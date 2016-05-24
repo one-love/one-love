@@ -19,16 +19,6 @@ you fully configured Docker environment.
 Point your browser to [Frontend](http://localhost:8080/) or [Backend](http://localhost:5000/).
 Login with admin@example.com/Sekrit
 
-### Testing
-In order to run a test. Run the following command in the repo directory.
-
-    $ docker-compose run --rm backend bin/test.sh
-
-When the testing is finished you can get one of the following results:
-
-  - . test passed
-  - F your test failed
-  - E something really bad happend
 
 
 ### Project components overview
