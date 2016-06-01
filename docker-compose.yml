@@ -13,6 +13,7 @@ services:
     image: onelove/backend
     volumes:
       - ./projects/backend:/usr/src/app
+      - /tmp/.cache:/root/.cache
     command: ./bin/dev.sh
     ports:
       - "5000:5000"
@@ -23,6 +24,7 @@ services:
     image: onelove/backend
     volumes:
       - ./projects/backend:/usr/src/app
+      - /tmp/.cache:/root/.cache
     command: ./bin/worker_dev.sh
     stdin_open: true
     tty: true
