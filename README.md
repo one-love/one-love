@@ -6,4 +6,4 @@ One Love
 One Love is WEB frontend which binds [Ansible](https://www.ansible.com/) roles, hosting providers APIs and [Docker Compose] (https://docs.docker.com/compose/) into interface which controls all aspects of the cloud infrastracture.
 
 ### Contributing
-For developers, [there's quick start](doc/quick-start.md)
+For developers, there's [quick start](doc/quick-start.md)
