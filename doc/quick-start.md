@@ -12,7 +12,7 @@ Quick Start
 Clone this repo and `cd` into it. The process will take a while and should give
 you fully configured Docker environment.
 
-    $ vagrant up
+    $ vagrant up # OPTIONAL: needed only to run provision
     $ ./download-repos.sh
     $ docker-compose up -d
     $ docker-compose run --rm backend bin/load_data.sh
@@ -25,7 +25,7 @@ Login with admin@example.com/Sekrit
 ### Non-first run
 As repos are downloaded and data is loaded, the following is enough:
 
-    $ vagrant up
+    $ vagrant up # OPTIONAL: needed only to run provision
     $ docker-compose start
     $ docker-compose logs -f
 
