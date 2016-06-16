@@ -1,1 +1,1 @@
-![Landing diagram](landing.png)
+![Landing diagram](Landing.png)
