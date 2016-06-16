@@ -11,4 +11,4 @@ The idea is to create software which is able to manage multiple hosting provider
 For developers, there's [quick start](doc/quick-start.md)
 
 ### Use Cases 
-For use cases, visit [use cases man page](use_cases/README.md)
+For use cases, there's [use cases man page](use_cases/README.md)
