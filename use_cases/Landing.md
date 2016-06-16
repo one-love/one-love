@@ -2,7 +2,7 @@
 
 ![Landing diagram](Landing.png)
 
-Use case elemnt | Description 
+Use case element | Description 
 ----------------|--------------
 Wizard | Description of wizard
 ClusterList | Description of ClusterList
