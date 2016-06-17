@@ -3,7 +3,7 @@ One Love
 ========
 
 ### Overview
-One Love is web-based application which aims to make managing multiple hosting providers, with multiple hosts on them easier.
+One Love is web-based application which aims to make managing multiple hosts on multiple hosting providers easier.
 
 It uses [Ansible](https://www.ansible.com) roles which are shared via [Galaxy](https://galaxy.ansible.com/) hosting providers APIs and [Docker Compose](https://docs.docker.com/compose/) to create a powerful interface which controls all the aspects of cloud infrastructure.
 
