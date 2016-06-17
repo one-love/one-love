@@ -3,12 +3,17 @@ One Love
 ========
 
 ### Overview
-One Love is WEB frontend which binds [Ansible](https://www.ansible.com/) roles which are shared via [Galaxy](https://galaxy.ansible.com/), hosting providers APIs and [Docker Compose] (https://docs.docker.com/compose/) into powerful interface which controls all aspects of the cloud infrastracture.
+One love is a web-based application designed to make managing multiple hosts easier.
 
-The idea is to create software which is able to manage multiple hosting providers which all have multiple hosts on them. You can put hosts into groups and apply roles based on those groups, for easier management of large number of machines.
+It uses [Ansible](https://www.ansible.com/) roles which are shared via [Galaxy](https://galaxy.ansible.com) hosting providers APIs and [Docker Compose](https://docs.docker.com/compose/) to make a powerful interface which controls all the aspects of the cloud infrastructure.
+
+The main idea behind One Love is to automate the process of seting-up and configuring different host machines on different host providers.
+
+You will be able to group multiple hosts together, and apply certain roles to the every group member therefor making the management of large number of machines a lot easier.
+
 
 ### Contributing
-For developers, there's [quick start](doc/quick-start.md)
+For developers wanting to contribute, there's [contributors page](doc/contributing.md).
 
 ### Use Cases 
-For use cases, there's [use cases page](use_cases/README.md)
+For use cases, there's a [use cases page](use_cases/README.md).
