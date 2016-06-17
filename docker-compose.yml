@@ -31,3 +31,17 @@ services:
 
   mongodb:
     image: mongo:latest
+
+  registrator:
+    image: gliderlabs/registrator:latest
+    command: consul://consul:8500
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+    links:
+      - consul:consul
+
+  consul:
+    image: consul:latest
+    command: agent -data-dir=/consul/data -config-dir=/consul/config -dev -client 0.0.0.0
+    ports:
+      - "8500:8500"
