@@ -15,5 +15,5 @@ You will be able to group multiple hosts together, and apply certain roles to th
 ### Contributing
 For developers wanting to contribute, there's [contributors page](doc/contributing.md).
 
-### Use Cases 
+### Use Cases
 For use cases, there's a [use cases page](use_cases/README.md).
