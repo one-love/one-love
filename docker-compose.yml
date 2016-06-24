@@ -10,7 +10,7 @@ services:
       - "8080:8080"
 
   backend:
-    image: onelove/backend
+    image: python:2-onbuild
     volumes:
       - ./projects/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
@@ -21,7 +21,7 @@ services:
       - mongodb:mongodb
 
   worker:
-    image: onelove/backend
+    image: python:2-onbuild
     volumes:
       - ./projects/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
