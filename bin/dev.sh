@@ -8,5 +8,5 @@ find "${BACKEND_ROOT}" -name '*.pyc' -delete
 
 tmux new-session -s "onelove" -d "${BACKEND_ROOT}/bin/dev.sh"
 tmux splitw -h -p 50 -t 0 -c "${FRONTEND_ROOT}" "${FRONTEND_ROOT}/bin/dev.sh"
-tmux splitw -v -p 50 -t 0 -c "${BACKEND_ROOT}" "${BACKEND_ROOT}/bin/celery_dev.sh"
+tmux splitw -v -p 50 -t 0 -c "${BACKEND_ROOT}" "${BACKEND_ROOT}/bin/worker_dev.sh"
 tmux a
