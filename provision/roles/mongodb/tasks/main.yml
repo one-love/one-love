@@ -1,0 +1,4 @@
+---
+- name: install mongodb packages
+  pkgng:
+    name: "mongodb32"

@@ -1,0 +1,7 @@
+---
+- name: Bootstrap
+  gather_facts: False
+  hosts: all
+  roles:
+    - common
+    - mongodb
