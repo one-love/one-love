@@ -1,5 +1,5 @@
 ---
-- name: Bootstrap
+- name: Provision One Love inside FreeBSD Jail
   gather_facts: False
   hosts: all
   roles:
