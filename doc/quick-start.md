@@ -11,13 +11,14 @@ Quick Start
 ### First run
 Clone this repo and `cd` into it. The process will take a while and should give
 you fully configured Docker environment.
-```
+
+<pre>
+$ git clone <b>--recursive</b> https://github.com/one-love/one-love.git
 $ vagrant up # OPTIONAL: needed only to run provision
-$ ./download-repos.sh
 $ docker-compose up -d
 $ docker-compose run --rm backend bin/load_data.sh
 $ docker-compose logs -f
-```
+</pre>
 
 Point your browser to [Frontend](http://localhost:8080/) or [Backend](http://localhost:5000/).
 Login with admin@example.com/Sekrit
