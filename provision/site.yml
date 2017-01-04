@@ -1,0 +1,6 @@
+---
+- name: One Love provisioning
+  hosts: all
+  roles:
+    - python
+    - node

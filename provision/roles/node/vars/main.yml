@@ -1,0 +1,4 @@
+---
+node_packages:
+  - name: node
+  - name: npm
