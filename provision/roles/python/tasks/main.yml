@@ -1,0 +1,10 @@
+---
+- name: install python packages
+  with_items: "{{ python_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+
+- name: install pip packages
+  with_items: "{{ python_pip_packages }}"
+  pip:
+    name: "{{ item.name }}"

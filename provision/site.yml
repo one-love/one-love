@@ -1,7 +1,6 @@
 ---
-- name: Provision One Love inside FreeBSD Jail
-  gather_facts: False
+- name: One Love provisioning
   hosts: all
   roles:
-    - common
-    - mongodb
+    - python
+    - node
