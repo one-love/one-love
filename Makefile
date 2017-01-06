@@ -7,12 +7,15 @@ up:
 
 down:
 	@sudo cbsd jstop ${PROJECT} || true
+	@sed -e "s:PROJECT:${PROJECT}:g" provision/inventory.tpl >provision/inventory
 	@sudo ansible-playbook -i provision/inventory provision/teardown.yml
 
 destroy: down
+	@rm provision/inventory
 	@sudo cbsd jremove ${PROJECT}
 
 provision: up
+	@sed -e "s:PROJECT:${PROJECT}:g" provision/inventory.tpl >provision/inventory
 	@sudo ansible-playbook -i provision/inventory provision/site.yml
 
 login: provision
