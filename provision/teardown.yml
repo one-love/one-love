@@ -1,0 +1,5 @@
+---
+- name: OneLove localhost provisioning
+  hosts: localhost
+  roles:
+    - teardown

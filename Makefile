@@ -6,9 +6,10 @@ up:
 	@sudo cbsd jstart ${PROJECT} || true
 
 down:
-	@sudo cbsd jstop ${PROJECT}
+	@sudo cbsd jstop ${PROJECT} || true
+	@sudo ansible-playbook -i provision/inventory provision/teardown.yml
 
-destroy:
+destroy: down
 	@sudo cbsd jremove ${PROJECT}
 
 provision: up
