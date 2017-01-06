@@ -2,7 +2,7 @@
 - name: setup /etc/hosts on localhost
   become: yes
   lineinfile:
-    regexp: '^10\..*\..*\..* onelove'
+    regexp: '^10\..*\..*\..* {{ project }}'
     dest: /etc/hosts
-    line: "{{ hostvars['onelove'].ansible_all_ipv4_addresses[0] }} onelove"
+    line: "{{ hostvars[project].ansible_all_ipv4_addresses[0] }} {{ project }}"
     state: present

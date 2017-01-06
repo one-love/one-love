@@ -1,13 +1,13 @@
 ---
-- name: One Love provisioning
-  hosts: onelove
+- name: PROJECT provisioning
+  hosts: PROJECT
   roles:
     - common
     - mongodb
     - python
     - node
 
-- name: One Love localhost provisioning
+- name: PROJECT localhost provisioning
   hosts: localhost
   roles:
     - localhost
