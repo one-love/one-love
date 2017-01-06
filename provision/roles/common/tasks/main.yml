@@ -1,3 +1,16 @@
 ---
-- name: install python
-  raw: pkg install -y python
+- name: install common packages
+  with_items: "{{ common_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+
+- name: link bash to /bin/bash
+  file:
+    state: link
+    src: /usr/local/bin/bash
+    dest: /bin/bash
+
+- name: setup cshrc
+  copy:
+    src: cshrc
+    dest: /root/.cshrc

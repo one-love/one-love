@@ -2,5 +2,7 @@
 - name: One Love provisioning
   hosts: all
   roles:
+    - common
+    - mongodb
     - python
     - node

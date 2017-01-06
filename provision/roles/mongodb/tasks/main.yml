@@ -1,4 +1,22 @@
 ---
 - name: install mongodb packages
+  with_items: "{{ mongodb_packages }}"
   pkgng:
-    name: "mongodb32"
+    name: "{{ item.name }}"
+
+- name: ensure /var/run/mongodb exists
+  file:
+    path: /var/run/mongodb
+    owner: mongodb
+    group: mongodb
+    state: directory
+
+- name: setup mongodb
+  copy:
+    src: mongod
+    dest: /etc/rc.conf.d/mongod
+
+- name: start mongodb
+  service:
+    name: mongod
+    state: started
