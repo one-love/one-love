@@ -6,3 +6,6 @@ projects/
 *.pyc
 .Trash-*/
 *.retry
+provision/inventory
+provision/site.yml
+provision/group_vars/all
