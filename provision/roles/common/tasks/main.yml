@@ -14,3 +14,9 @@
   copy:
     src: cshrc
     dest: /root/.cshrc
+
+- name: configure /etc/hosts
+  lineinfile:
+    regexp: '^127\.0\.0\.1 worker backend mongodb'
+    line: '127.0.0.1 worker backend mongodb'
+    dest: /etc/hosts
