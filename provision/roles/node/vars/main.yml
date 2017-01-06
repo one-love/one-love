@@ -2,3 +2,5 @@
 node_packages:
   - name: node
   - name: npm
+  - name: openjpeg
+  - name: png

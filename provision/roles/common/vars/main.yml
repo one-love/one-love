@@ -1,0 +1,6 @@
+---
+common_packages:
+  - name: bash
+  - name: ca_root_nss
+  - name: git-lite
+  - name: tmux

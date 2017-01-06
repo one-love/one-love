@@ -1,9 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
-PROJECTS_ROOT=$(readlink -f "$(dirname $0)/../projects")
-BACKEND_ROOT=$(readlink -f "${PROJECTS_ROOT}/backend")
-FRONTEND_ROOT=$(readlink -f "${PROJECTS_ROOT}/frontend")
+BIN_DIR=`dirname $0`
+PROJECTS_ROOT=`readlink -f "${BIN_DIR}/../projects"`
+BACKEND_ROOT=`readlink -f "${PROJECTS_ROOT}/backend"`
+FRONTEND_ROOT=`readlink -f "${PROJECTS_ROOT}/frontend"`
 
+if [ "$(whoami)" = "devel" ]; then
+    if [ ! -d ~/.virtualenvs/imaginevr ]; then
+        vex --make imaginevr pip install -U pip
+    fi
+    . ~/.virtualenvs/imaginevr/bin/activate
+fi
 "${BACKEND_ROOT}/bin/setup.sh"
 
 tmux new-session -s "onelove" -d "${BACKEND_ROOT}/bin/dev.sh"
