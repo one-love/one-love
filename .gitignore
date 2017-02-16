@@ -9,3 +9,4 @@ projects/
 provision/inventory
 provision/site.yml
 provision/group_vars/all
+.provisioned
