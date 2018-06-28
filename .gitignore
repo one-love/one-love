@@ -2,6 +2,5 @@
 log/
 user-data
 services/
-.ropeproject/
-*.pyc
 *.retry
+vars.mk
