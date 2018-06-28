@@ -1,5 +1,0 @@
----
-- name: install node packages
-  with_items: "{{ node_packages }}"
-  pkgng:
-    name: "{{ item.name }}"
