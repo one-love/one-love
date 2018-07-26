@@ -1,12 +1,6 @@
 .vagrant/
 log/
 user-data
-projects/
-.ropeproject/
-*.pyc
-.Trash-*/
+services/
 *.retry
-provision/inventory
-provision/site.yml
-provision/group_vars/all
-.provisioned
+vars.mk

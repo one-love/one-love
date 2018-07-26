@@ -1,7 +1,0 @@
----
-- name: remove entry from /etc/hosts on localhost
-  become: yes
-  lineinfile:
-    regexp: '^10\..*\..*\..* {{ project }}'
-    dest: /etc/hosts
-    state: absent

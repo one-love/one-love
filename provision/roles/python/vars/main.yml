@@ -1,6 +1,0 @@
----
-python_packages:
-  - name: py27-pip
-
-python_pip_packages:
-  - name: vex
