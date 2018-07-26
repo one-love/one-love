@@ -10,18 +10,18 @@ services:
       - "8080:8080"
 
   backend:
-    image: python:2-onbuild
+    image: python:3-onbuild
     volumes:
       - ./projects/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
-    command: ./bin/dev.sh
+    command: ./bin/devel.sh
     ports:
       - "5000:5000"
     links:
       - mongodb:mongodb
 
   worker:
-    image: python:2-onbuild
+    image: python:3-onbuild
     volumes:
       - ./projects/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
