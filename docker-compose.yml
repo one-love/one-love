@@ -4,7 +4,7 @@ services:
   frontend:
     image: onelove/frontend
     volumes:
-      - ./projects/frontend:/usr/src/app
+      - ./services/frontend:/usr/src/app
     command: ./bin/dev.sh
     ports:
       - "8080:8080"
@@ -12,7 +12,7 @@ services:
   backend:
     image: python:3-onbuild
     volumes:
-      - ./projects/backend:/usr/src/app
+      - ./services/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
     command: ./bin/devel.sh
     ports:
@@ -23,7 +23,7 @@ services:
   worker:
     image: python:3-onbuild
     volumes:
-      - ./projects/backend:/usr/src/app
+      - ./services/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
     command: ./bin/worker_dev.sh
 
