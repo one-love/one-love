@@ -15,7 +15,7 @@ you fully configured Docker environment.
 $ vagrant up # OPTIONAL: needed only to run provision
 $ ./download-repos.sh
 $ docker-compose up -d
-$ docker-compose exec backend bin/load_data.sh
+$ docker-compose exec backend bin/default_admin.sh
 $ docker-compose logs -f
 ```
 
