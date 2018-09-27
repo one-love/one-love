@@ -9,4 +9,3 @@ cd ${PROJECT_ROOT}/services/backend
 bin/test.sh
 cd ${PROJECT_ROOT}/services/frontend
 bin/test.sh
-
