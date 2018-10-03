@@ -88,8 +88,3 @@ __Indentation:__
 Use spaces for indentation, never tabs. Configure your editor to use soft tabs
 (or translate tabs to spaces, as labeled in some editors). Set it to 4 spaces
 per tab.
-
-
-### Getting started
-
-When you have carefully read everything above visit the [quick start guide](quick-start.md) to get started.
