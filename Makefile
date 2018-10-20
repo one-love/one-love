@@ -6,3 +6,5 @@ SERVICES = mongodb https://github.com/mekanix/jail-mongodb \
 
 .include <${REGGAE_PATH}/mk/project.mk>
 
+collect:
+	@bin/collect.sh
