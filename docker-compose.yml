@@ -5,7 +5,7 @@ services:
     image: onelove/frontend
     volumes:
       - ./services/frontend:/usr/src/app
-    command: ./bin/dev.sh
+    command: ./bin/devel.sh
     ports:
       - "8080:8080"
 
@@ -14,18 +14,22 @@ services:
     volumes:
       - ./services/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
-    command: ./bin/devel.sh
+    command: bash -c "./bin/default_user.sh && ./bin/devel.sh"
     ports:
       - "5000:5000"
     links:
       - mongodb:mongodb
+      - redis:redis
 
   worker:
     image: python:3-onbuild
     volumes:
       - ./services/backend:/usr/src/app
       - /tmp/.cache:/root/.cache
-    command: ./bin/worker_dev.sh
+    command: ./bin/celery_dev.sh
+
+  redis:
+    image: redis:latest
 
   mongodb:
     image: mongo:latest
