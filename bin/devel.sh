@@ -12,6 +12,7 @@ if [ -f /usr/local/bin/cbsd ]; then
   sudo tmux split-window -v -p 50 -t 1 "cbsd jexec user=devel jname=oneloveback /usr/src/bin/celery_dev.sh"
   sudo tmux a
 else
+  "${PROJECT_ROOT}/services/backend/bin/download-repos.sh"
   "${PROJECT_ROOT}/services/backend/bin/devel.sh"
   tmux new-session -s "tilda" -d "${PROJECT_ROOT}/services/backend/bin/devel.sh"
   tmux split-window -h -p 50 -t 0 "${PROJECT_ROOT}/services/frontend/bin/devel.sh"

@@ -7,7 +7,7 @@ services:
       - ./services/frontend:/usr/src/app
     command: ./bin/devel.sh
     ports:
-      - "8080:8080"
+      - "3000:3000"
 
   backend:
     image: python:3-onbuild

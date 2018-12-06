@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PROJECT_ROOT=`dirname $0`
+export BIN_DIR=`dirname $0`
+export PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 SERVICES_ROOT="${PROJECT_ROOT}/services"
 
 git pull
