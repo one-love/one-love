@@ -7,7 +7,7 @@ export PROJECT_ROOT=`readlink -f "${BIN_DIR}/.."`
 
 if [ -f /usr/local/bin/cbsd ]; then
   if [ ! -e "${PROJECT_ROOT}/services/frontend/project.conf" ]; then
-    backend_hostname=$(sudo cbsd jexec user=devel jname=tildaback hostname)
+    backend_hostname=$(sudo cbsd jexec user=devel jname=oneloveback hostname)
     echo "HTTP_PROXY=http://${backend_hostname}:5000" >"${PROJECT_ROOT}/services/frontend/project.conf"
   fi
   sudo cbsd jexec user=devel jname=oneloveback /usr/src/bin/default_user.sh
